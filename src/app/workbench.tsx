@@ -29,15 +29,6 @@ import {
   getTrackCompletion,
 } from "@/lib/rules";
 
-const sectionLabels: Record<HaccpSection["sectionType"], string> = {
-  PRODUCT_PROCESS: "Product & process",
-  HAZARD_ANALYSIS: "Hazard analysis",
-  CCP_PLAN: "CCP plan",
-  SSOP: "SSOP",
-  GMP_PRP: "GMP / PRP",
-  MANUAL_SUMMARY: "Manual summary",
-};
-
 const platformBoundary =
   "Readiness and compliance support only. Rules and workflow first; limited AI only in paid workspaces. Not a certification body, laboratory, government approval authority, or guarantee of market access.";
 
@@ -112,12 +103,6 @@ const operatingModules = [
     title: "Consulting CRM",
     detail: "Lead status, service recommendation, quotation stage, meetings, and annual support lifecycle.",
   },
-];
-
-const languagePlan = [
-  "English remains the primary operating language for export files and consultant review.",
-  "Chinese is used only for strategic labels and internal operator clarity.",
-  "Khmer is reserved for worker training, factory tasks, and future client-facing guidance.",
 ];
 
 const nextDocumentOptions: DocumentType[] = [
@@ -364,12 +349,6 @@ export function Workbench() {
   const gaccMissing = getMissingDocuments(state.documents, selectedClient.id, "gacc", selectedClient.targetMarket);
   const gaccRequirement = determineGaccRequirement(selectedClient.productType, selectedClient.targetMarket);
   const operation = checkHaccpOperationEligibility(project.haccpOperationStartDate);
-  const previewKnowledgeContext = retrieveKnowledgeContext({
-    generationType: "gap_analysis",
-    targetMarket: selectedClient.targetMarket,
-    productType: selectedClient.productType,
-    sources: state.knowledgeSources,
-  });
   const readinessScore = calculateReadinessScore({
     clientId: selectedClient.id,
     projectId: project.id,
@@ -539,433 +518,323 @@ export function Workbench() {
   }
 
   return (
-    <main className="shell">
-      <aside className="sidebar">
+    <main className="public-shell">
+      <header className="public-nav">
         <div>
-          <p className="eyebrow">
-            CERE
-            <Zh text={zhLabels["Certification consulting workspace"]} />
-          </p>
-          <h1>Cambodia Export Readiness Engine</h1>
-          <p className="sidebar-subtitle">The Operating System for Cambodia Food Exporters</p>
-          <p className="boundary-note">{platformBoundary}</p>
+          <strong>CERE</strong>
+          <span>Cambodia Export Readiness Engine</span>
         </div>
-
-        <div className="sidebar-stack">
-          <span className="stage-chip">Free: rules only</span>
-          <span className="stage-chip">Paid: limited AI</span>
-          <span className="stage-chip">Khmer-ready language layer</span>
-        </div>
-
-        <div className="new-client">
-          <input
-            value={newClientName}
-            onChange={(event) => setNewClientName(event.target.value)}
-            placeholder="New client name"
-            aria-label="New client name"
-          />
-          <button onClick={addClient}>Add</button>
-        </div>
-
-        <nav className="client-list" aria-label="Clients">
-          {state.clients.map((client) => (
-            <button
-              key={client.id}
-              className={client.id === selectedClient.id ? "client-link active" : "client-link"}
-              onClick={() => setSelectedClientId(client.id)}
-            >
-              <span>{client.name}</span>
-              <small>{client.productType}</small>
-            </button>
-          ))}
+        <nav aria-label="Page sections">
+          <a href="#process">Process</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#workspace">Demo</a>
         </nav>
-      </aside>
+      </header>
 
-      <section className="content">
-        <header className="topbar">
-          <div>
-            <p className="eyebrow">
-              Cambodia Food Export OS
-              <Zh text={zhLabels["Cambodia Food Export OS"]} />
-            </p>
-            <h2>{selectedClient.name}</h2>
-            <p>
-              {selectedClient.factoryLocation} · {selectedClient.productType} · Target: {selectedClient.targetMarket}
-            </p>
+      <section className="client-hero">
+        <div className="hero-copy">
+          <p className="eyebrow">
+            Cambodia Food Export OS
+            <Zh text={zhLabels["Cambodia Food Export OS"]} />
+          </p>
+          <h1>
+            Export readiness, certification consulting, and compliance workflow in one platform.
+            <Zh text="把出口准备度、认证咨询和合规流程放进一个系统。" />
+          </h1>
+          <p>
+            CERE helps food exporters understand whether they are ready for target markets such as China, the EU, the US,
+            Japan, and ASEAN, then turns gaps into documents, evidence, tasks, and consultant-reviewed next steps.
+          </p>
+          <div className="hero-actions">
+            <a className="primary-link" href="#workspace">View demo workspace</a>
+            <a className="secondary-link" href="#process">See workflow</a>
           </div>
-          <div className="call-budget">
-            <span>{aiCallsUsed}</span>
-            <small>of {MAX_AI_CALLS_PER_CLIENT} paid AI actions</small>
-          </div>
-        </header>
+        </div>
 
-        <section className="os-hero">
+        <div className="readiness-preview" aria-label="Readiness score preview">
           <div>
-            <p className="eyebrow">
-              Strategic position
-              <Zh text={zhLabels["Strategic position"]} />
-            </p>
-            <h3>
-              Start with certification readiness. Grow into export compliance infrastructure.
-              <Zh text="从认证准备切入，逐步成为食品出口合规基础设施。" />
-            </h3>
-            <p>
-              CERE is designed around one question: can this factory export successfully to its target market, and what should happen next?
-            </p>
-          </div>
-          <div className="hero-score">
             <span>{readinessScore.overallScore}%</span>
-            <strong>Export Readiness</strong>
-            <p>{readinessScore.majorGaps.length > 0 ? readinessScore.majorGaps[0] : "Ready for the next workflow step."}</p>
+            <strong>Export Readiness Score</strong>
+            <p>{selectedClient.name}</p>
           </div>
-        </section>
-
-        <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <p className="eyebrow">
-                Commercial access model
-                <Zh text={zhLabels["Commercial access model"]} />
-              </p>
-              <h3>Free Snapshot → Paid Workspace → Annual Support</h3>
-            </div>
-          </div>
-          <div className="stage-grid">
-            {accessStages.map((stage) => (
-              <article className="stage-card" key={stage.title}>
-                <div>
-                  <span>{stage.status}</span>
-                  <strong>
-                    {stage.title}
-                    <Zh text={stage.zhTitle} />
-                  </strong>
-                </div>
-                <p>{stage.description}</p>
-                <ul>
-                  {stage.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="grid two">
-          <TrackCard
-            title="HACCP track"
-            status={haccpStatusLabels[project.haccpStatus]}
-            progress={getTrackCompletion(project.haccpStatus, haccpStatuses)}
-            detail={
-              operation.eligible
-                ? "90-day operation requirement is ready for audit planning."
-                : `${operation.daysCompleted} days completed, ${operation.daysRemaining} days remaining.`
-            }
-          />
-          <TrackCard
-            title="GACC track"
-            status={gaccStatusLabels[project.gaccStatus]}
-            progress={getTrackCompletion(project.gaccStatus, gaccStatuses)}
-            detail={gaccRequirement.reason}
-          />
-        </section>
-
-        <section className="grid three">
-          <Metric label="Uploaded files" value={documentSummary.uploadedCount.toString()} detail="Evidence currently stored in placeholder storage" />
-          <Metric label="Accepted evidence" value={documentSummary.acceptedCount.toString()} detail="Ready for readiness scoring inputs" />
-          <Metric label="Needs review" value={documentSummary.reviewNeededCount.toString()} detail="Consultant check required before paid output" />
-        </section>
-
-        <section className="panel readiness-panel">
-          <div className="readiness-score">
-            <div>
-              <p className="eyebrow">
-                Export Readiness Score
-                <Zh text={zhLabels["Export Readiness Score"]} />
-              </p>
-              <h3>{readinessScore.overallScore}%</h3>
-              <p>{readinessScore.majorGaps.length > 0 ? readinessScore.majorGaps.join(" · ") : "No major gaps in current rules."}</p>
-              <small>Free stage uses rules only. Detailed reports and AI drafts unlock after paid workspace activation.</small>
-            </div>
-          </div>
-          <div className="score-grid">
+          <div className="preview-bars">
             <ScorePill label="HACCP" value={readinessScore.dimensions.haccpReadiness} />
             <ScorePill label="GACC" value={readinessScore.dimensions.gaccReadiness} />
             <ScorePill label="Documents" value={readinessScore.dimensions.documentCompleteness} />
             <ScorePill label="Training" value={readinessScore.dimensions.trainingReadiness} />
-            <ScorePill label="Lab evidence" value={readinessScore.dimensions.labTestReadiness} />
-            <ScorePill label="Label" value={readinessScore.dimensions.labelCompliance} />
-            <ScorePill label="Audit risk" value={readinessScore.dimensions.auditRisk} />
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <p className="eyebrow">
-                Readiness core
-                <Zh text={zhLabels["Readiness core"]} />
-              </p>
-              <h3>Operating architecture</h3>
-            </div>
-          </div>
-          <div className="module-grid">
-            {operatingModules.map((module) => (
-              <article className="os-module" key={module.title}>
-                <strong>{module.title}</strong>
-                <p>{module.detail}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+      <section className="client-section" id="process">
+        <div className="section-header">
+          <p className="eyebrow">
+            Business flow
+            <Zh text="业务流程" />
+          </p>
+          <h2>From readiness score to export support</h2>
+          <p>
+            The platform is designed as a guided operating flow, not a marketplace and not a government approval portal.
+          </p>
+        </div>
+        <div className="process-grid">
+          {[
+            ["01", "Readiness intake", "Factory profile, product category, target market, and existing evidence."],
+            ["02", "Score and gaps", "Rules generate a 0-100 readiness score and identify the highest-priority weaknesses."],
+            ["03", "Consulting workspace", "HACCP, GACC, documents, training, audit plan, and evidence review move into one project space."],
+            ["04", "CAPA and tasks", "Every gap becomes a corrective action with owner, deadline, evidence, and closure status."],
+            ["05", "Annual support", "After project delivery, the factory keeps renewal reminders, evidence tracking, and buyer audit readiness."],
+          ].map(([step, title, detail]) => (
+            <article className="process-card" key={step}>
+              <span>{step}</span>
+              <strong>{title}</strong>
+              <p>{detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-        <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <p className="eyebrow">
-                Market-specific route
-              </p>
-              <h3>{marketProfile.marketGroup} export and audit profile</h3>
-            </div>
-          </div>
-          <div className="market-grid">
-            <ProfileBlock title="Standards" items={marketProfile.standards} />
-            <ProfileBlock title="Audits" items={marketProfile.auditTypes} />
-            <ProfileBlock title="Export controls" items={marketProfile.exportControls} />
-          </div>
-          <p className="market-note">{marketProfile.notes}</p>
-        </section>
+      <section className="client-section split-section" id="architecture">
+        <div className="section-header">
+          <p className="eyebrow">
+            Platform architecture
+            <Zh text="平台业务架构" />
+          </p>
+          <h2>Rules handle judgment. Consultants review. AI drafts only where it adds value.</h2>
+          <p>{platformBoundary}</p>
+        </div>
+        <div className="architecture-grid">
+          {operatingModules.map((module) => (
+            <article className="architecture-card" key={module.title}>
+              <strong>{module.title}</strong>
+              <p>{module.detail}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-        <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <p className="eyebrow">
-                Knowledge base
-              </p>
-              <h3>Retrieved context preview</h3>
-            </div>
-            <span className="source-count">{state.knowledgeSources.length} sources</span>
-          </div>
-          <div className="knowledge-list">
-            {previewKnowledgeContext.map((source) => (
-              <article className="knowledge-source" key={source.sourceId}>
-                <strong>{source.title}</strong>
-                <p>{source.excerpt}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <p className="eyebrow">
-                Documents and evidence
-                <Zh text={zhLabels["Documents and evidence"]} />
-              </p>
-              <h3>Rule-based document checks</h3>
-            </div>
-            <div className="inline-control">
-              <select
-                value={selectedDocumentType}
-                onChange={(event) => setSelectedDocumentType(event.target.value as DocumentType)}
-                aria-label="Document type"
-              >
-                {nextDocumentOptions.map((documentType) => (
-                  <option key={documentType} value={documentType}>
-                    {documentLabels[documentType]}
-                  </option>
-                ))}
-              </select>
-              <button onClick={addDocument}>Add file</button>
-            </div>
-          </div>
-          <div className="check-grid">
-            <CheckBlock title="Free snapshot gaps" missing={gapMissing} />
-            <CheckBlock title="HACCP readiness" missing={haccpMissing} />
-            <CheckBlock title="GACC readiness" missing={gaccMissing} />
-          </div>
-        </section>
-
-        <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <p className="eyebrow">
-                Paid AI actions
-                <Zh text={zhLabels["Paid AI actions"]} />
-              </p>
-              <h3>Limited high-value generation</h3>
-              <p className="section-note">AI is reserved for paid workspaces and always tied to a compliance action, not open-ended free chat.</p>
-            </div>
-            <input
-              className="reason-input"
-              value={regenerateReason}
-              onChange={(event) => setRegenerateReason(event.target.value)}
-              placeholder="Regenerate reason"
-              aria-label="Regenerate reason"
-            />
-          </div>
-          <div className="actions">
-            <GenerateButton label="Gap Analysis" type="gap_analysis" generations={clientGenerations} onGenerate={generate} />
-            <GenerateButton label="GACC Package" type="gacc_package" generations={clientGenerations} onGenerate={generate} />
-            <GenerateButton label="Training Package" type="training_package" generations={clientGenerations} onGenerate={generate} />
-            <GenerateButton label="Internal Audit Plan" type="internal_audit_plan" generations={clientGenerations} onGenerate={generate} />
-            <GenerateButton label="Improvement Roadmap" type="export_readiness_roadmap" generations={clientGenerations} onGenerate={generate} />
-          </div>
-        </section>
-
-        <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <p className="eyebrow">
-                HACCP workstream
-                <Zh text={zhLabels["HACCP workstream"]} />
-              </p>
-              <h3>Section-by-section paid workspace</h3>
-            </div>
-          </div>
-          <div className="haccp-workflow">
-            {haccpGenerationSteps.map((step, index) => {
-              const section = state.haccpSections.find(
-                (item) => item.clientId === selectedClient.id && item.sectionType === step.sectionType,
-              );
-              const previousStep = haccpGenerationSteps[index - 1];
-              const previousDone =
-                !previousStep ||
-                state.haccpSections.some(
-                  (item) =>
-                    item.clientId === selectedClient.id &&
-                    item.sectionType === previousStep.sectionType &&
-                    item.status !== "not_started",
-                );
-
-              return (
-                <article className="haccp-step" key={step.sectionType}>
-                  <div>
-                    <span>{index + 1}</span>
-                    <div>
-                      <strong>
-                        {step.label}
-                      </strong>
-                      <p>{section?.status.replace("_", " ") ?? "not started"}</p>
-                    </div>
-                  </div>
-                  <GenerateButton
-                    label="Generate"
-                    type={step.type}
-                    generations={clientGenerations}
-                    onGenerate={generate}
-                    disabled={!previousDone}
-                  />
-                </article>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="grid two">
-          <section className="panel">
-            <div className="panel-heading">
+      <section className="client-section">
+        <div className="section-header">
+          <p className="eyebrow">
+            Service path
+            <Zh text="服务路径" />
+          </p>
+          <h2>Clear free entry, paid delivery, and long-term support</h2>
+        </div>
+        <div className="stage-grid">
+          {accessStages.map((stage) => (
+            <article className="stage-card" key={stage.title}>
               <div>
-                <p className="eyebrow">
-                  Workspace structure
-                </p>
-                <h3>HACCP sections</h3>
+                <span>{stage.status}</span>
+                <strong>
+                  {stage.title}
+                  <Zh text={stage.zhTitle} />
+                </strong>
               </div>
-            </div>
-            <div className="section-list">
-              {state.haccpSections
-                .filter((section) => section.clientId === selectedClient.id)
-                .map((section) => (
-                  <div className="section-row" key={section.id}>
-                    <span>{sectionLabels[section.sectionType]}</span>
-                    <strong>{section.status.replace("_", " ")}</strong>
-                  </div>
+              <p>{stage.description}</p>
+              <ul>
+                {stage.items.map((item) => (
+                  <li key={item}>{item}</li>
                 ))}
-            </div>
-          </section>
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
 
-          <section className="panel">
-            <div className="panel-heading">
-              <div>
-                <p className="eyebrow">
-                  Paid outputs
-                </p>
-                <h3>Generated reports</h3>
-              </div>
-            </div>
-            <div className="generation-list">
-              {clientGenerations.length === 0 ? (
-                <p className="muted">No AI output yet. Generate a package to create the first audit record.</p>
-              ) : (
-                clientGenerations.slice(0, 4).map((generation) => <GenerationCard key={generation.id} generation={generation} />)
-              )}
-            </div>
-          </section>
-        </section>
+      <section className="client-section deliverables-section">
+        <div className="section-header">
+          <p className="eyebrow">What clients get</p>
+          <h2>Practical outputs for food export preparation</h2>
+        </div>
+        <div className="deliverable-grid">
+          {[
+            "Export Readiness Score",
+            "Gap Analysis Report",
+            "HACCP Workstream",
+            "GACC Readiness Package",
+            "Training Evidence",
+            "Audit Preparation Plan",
+            "Lab Report Evidence Tracking",
+            "Annual Compliance Support",
+          ].map((item) => (
+            <article key={item}>{item}</article>
+          ))}
+        </div>
+      </section>
 
-        <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <p className="eyebrow">
-                Traceability
-              </p>
-              <h3>Audit log</h3>
+      <section className="client-section demo-workspace" id="workspace">
+        <div className="section-header">
+          <p className="eyebrow">
+            Demo workspace
+            <Zh text="演示工作台" />
+          </p>
+          <h2>{selectedClient.name}</h2>
+          <p>
+            {selectedClient.factoryLocation} · {selectedClient.productType} · Target: {selectedClient.targetMarket}
+          </p>
+        </div>
+
+        <div className="demo-layout">
+          <aside className="demo-clients">
+            <div className="new-client">
+              <input
+                value={newClientName}
+                onChange={(event) => setNewClientName(event.target.value)}
+                placeholder="New client name"
+                aria-label="New client name"
+              />
+              <button onClick={addClient}>Add</button>
             </div>
-          </div>
-          <div className="audit-list">
-            {state.auditLogs
-              .filter((log) => log.clientId === selectedClient.id)
-              .slice(0, 6)
-              .map((log) => (
-                <div key={log.id} className="audit-row">
-                  <span>{log.action}</span>
-                  <p>{log.details}</p>
-                  <time>{formatDateTime(log.createdAt)}</time>
-                </div>
+            <nav className="client-list" aria-label="Clients">
+              {state.clients.map((client) => (
+                <button
+                  key={client.id}
+                  className={client.id === selectedClient.id ? "client-link active" : "client-link"}
+                  onClick={() => setSelectedClientId(client.id)}
+                >
+                  <span>{client.name}</span>
+                  <small>{client.productType}</small>
+                </button>
               ))}
-          </div>
-        </section>
+            </nav>
+          </aside>
 
-        <section className="panel language-panel">
-          <div>
-            <p className="eyebrow">
-              Language layer
-              <Zh text={zhLabels["Language layer"]} />
-            </p>
-            <h3>English-first now. Khmer-ready later.</h3>
-          </div>
-          <div className="language-list">
-            {languagePlan.map((item) => (
-              <p key={item}>{item}</p>
-            ))}
-          </div>
-        </section>
+          <div className="demo-main">
+            <section className="grid two">
+              <TrackCard
+                title="HACCP track"
+                status={haccpStatusLabels[project.haccpStatus]}
+                progress={getTrackCompletion(project.haccpStatus, haccpStatuses)}
+                detail={
+                  operation.eligible
+                    ? "90-day operation requirement is ready for audit planning."
+                    : `${operation.daysCompleted} days completed, ${operation.daysRemaining} days remaining.`
+                }
+              />
+              <TrackCard
+                title="GACC track"
+                status={gaccStatusLabels[project.gaccStatus]}
+                progress={getTrackCompletion(project.gaccStatus, gaccStatuses)}
+                detail={gaccRequirement.reason}
+              />
+            </section>
 
-        <section className="panel">
-          <div className="panel-heading">
-            <div>
-              <p className="eyebrow">
-                Strategic roadmap
-                <Zh text={zhLabels["Strategic roadmap"]} />
-              </p>
-              <h3>Export Operating System modules</h3>
-            </div>
-            <span className="source-count">{state.futureModules.length} planned</span>
-          </div>
-          <div className="future-grid">
-            {state.futureModules.map((module) => (
-              <article className="future-module" key={module.id}>
+            <section className="panel readiness-panel">
+              <div className="readiness-score">
                 <div>
-                  <strong>{module.title}</strong>
-                  <span>{module.phase}</span>
+                  <p className="eyebrow">
+                    Export Readiness Score
+                    <Zh text={zhLabels["Export Readiness Score"]} />
+                  </p>
+                  <h3>{readinessScore.overallScore}%</h3>
+                  <p>{readinessScore.majorGaps.length > 0 ? readinessScore.majorGaps.join(" · ") : "No major gaps in current rules."}</p>
                 </div>
-                <p>{module.description}</p>
-                <small>{module.status}</small>
-              </article>
-            ))}
+              </div>
+              <div className="score-grid">
+                <ScorePill label="HACCP" value={readinessScore.dimensions.haccpReadiness} />
+                <ScorePill label="GACC" value={readinessScore.dimensions.gaccReadiness} />
+                <ScorePill label="Documents" value={readinessScore.dimensions.documentCompleteness} />
+                <ScorePill label="Training" value={readinessScore.dimensions.trainingReadiness} />
+                <ScorePill label="Lab evidence" value={readinessScore.dimensions.labTestReadiness} />
+                <ScorePill label="Label" value={readinessScore.dimensions.labelCompliance} />
+                <ScorePill label="Audit risk" value={readinessScore.dimensions.auditRisk} />
+              </div>
+            </section>
+
+            <section className="grid three">
+              <Metric label="Uploaded files" value={documentSummary.uploadedCount.toString()} detail="Evidence currently stored in placeholder storage" />
+              <Metric label="Accepted evidence" value={documentSummary.acceptedCount.toString()} detail="Ready for readiness scoring inputs" />
+              <Metric label="Needs review" value={documentSummary.reviewNeededCount.toString()} detail="Consultant check required before paid output" />
+            </section>
+
+            <section className="panel">
+              <div className="panel-heading">
+                <div>
+                  <p className="eyebrow">Documents and evidence</p>
+                  <h3>Rule-based document checks</h3>
+                </div>
+                <div className="inline-control">
+                  <select
+                    value={selectedDocumentType}
+                    onChange={(event) => setSelectedDocumentType(event.target.value as DocumentType)}
+                    aria-label="Document type"
+                  >
+                    {nextDocumentOptions.map((documentType) => (
+                      <option key={documentType} value={documentType}>
+                        {documentLabels[documentType]}
+                      </option>
+                    ))}
+                  </select>
+                  <button onClick={addDocument}>Add file</button>
+                </div>
+              </div>
+              <div className="check-grid">
+                <CheckBlock title="Snapshot gaps" missing={gapMissing} />
+                <CheckBlock title="HACCP readiness" missing={haccpMissing} />
+                <CheckBlock title="GACC readiness" missing={gaccMissing} />
+              </div>
+            </section>
+
+            <section className="panel">
+              <div className="panel-heading">
+                <div>
+                  <p className="eyebrow">Paid workspace outputs</p>
+                  <h3>Limited high-value generation</h3>
+                </div>
+                <div className="call-budget compact-budget">
+                  <span>{aiCallsUsed}</span>
+                  <small>of {MAX_AI_CALLS_PER_CLIENT} paid AI actions</small>
+                </div>
+              </div>
+              <input
+                className="reason-input"
+                value={regenerateReason}
+                onChange={(event) => setRegenerateReason(event.target.value)}
+                placeholder="Regenerate reason"
+                aria-label="Regenerate reason"
+              />
+              <div className="actions">
+                <GenerateButton label="Gap Analysis" type="gap_analysis" generations={clientGenerations} onGenerate={generate} />
+                <GenerateButton label="GACC Package" type="gacc_package" generations={clientGenerations} onGenerate={generate} />
+                <GenerateButton label="Training Package" type="training_package" generations={clientGenerations} onGenerate={generate} />
+                <GenerateButton label="Internal Audit Plan" type="internal_audit_plan" generations={clientGenerations} onGenerate={generate} />
+                <GenerateButton label="Improvement Roadmap" type="export_readiness_roadmap" generations={clientGenerations} onGenerate={generate} />
+              </div>
+            </section>
+
+            <section className="panel">
+              <div className="panel-heading">
+                <div>
+                  <p className="eyebrow">Market entry profile</p>
+                  <h3>{marketProfile.marketGroup} export and audit route</h3>
+                </div>
+              </div>
+              <div className="market-grid">
+                <ProfileBlock title="Standards" items={marketProfile.standards} />
+                <ProfileBlock title="Audits" items={marketProfile.auditTypes} />
+                <ProfileBlock title="Export controls" items={marketProfile.exportControls} />
+              </div>
+              <p className="market-note">{marketProfile.notes}</p>
+            </section>
+
+            <section className="panel">
+              <div className="panel-heading">
+                <div>
+                  <p className="eyebrow">Generated client reports</p>
+                  <h3>Consultant-reviewed outputs</h3>
+                </div>
+              </div>
+              <div className="generation-list">
+                {clientGenerations.length === 0 ? (
+                  <p className="muted">Generate a paid workspace output to preview client-facing reports.</p>
+                ) : (
+                  clientGenerations.slice(0, 3).map((generation) => <GenerationCard key={generation.id} generation={generation} />)
+                )}
+              </div>
+            </section>
           </div>
-        </section>
+        </div>
       </section>
     </main>
   );
