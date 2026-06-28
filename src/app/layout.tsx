@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Cashew Export Readiness Platform",
-  description: "Internal export readiness, certification, and compliance workbench for cashew factories.",
+  title: "CERE | Cambodia Export Readiness Engine",
+  description: "Export readiness, certification consulting, and compliance workflow infrastructure for Cambodia food exporters.",
 };
 
 export default function RootLayout({

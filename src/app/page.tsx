@@ -1,5 +1,5 @@
-import { Workbench } from "./workbench";
+import { HomePage } from "./homepage";
 
 export default function Home() {
-  return <Workbench />;
+  return <HomePage />;
 }
