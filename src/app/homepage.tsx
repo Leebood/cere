@@ -36,7 +36,7 @@ const marketRoutes = [
       "Allergen and recall procedures",
       "Buyer audit evidence pack",
     ],
-    products: ["Cashew", "Mango", "Pepper", "Rice", "Processed food"],
+    products: ["Cashew", "Dried fruit", "Pepper", "Rice", "Processed food"],
     gaps: ["Traceability", "Supplier approval", "Buyer audit evidence"],
   },
   {
@@ -72,7 +72,7 @@ const marketRoutes = [
       "Quality inspection records",
       "Complaint handling procedure",
     ],
-    products: ["Cashew", "Pepper", "Coffee", "Mango", "Rice"],
+    products: ["Cashew", "Pepper", "Coffee", "Dried fruit", "Rice"],
     gaps: ["Product specification", "Quality records", "Process control"],
   },
   {
@@ -90,7 +90,7 @@ const marketRoutes = [
       "Baseline HACCP records",
       "Shipment and packing file",
     ],
-    products: ["Cashew", "Rice", "Pepper", "Mango", "Cassava"],
+    products: ["Cashew", "Rice", "Pepper", "Dried fruit", "Cassava"],
     gaps: ["Export documents", "Baseline HACCP", "Shipment evidence"],
   },
   {
@@ -126,19 +126,14 @@ const certificationBadges = [
 
 const productShowcase = [
   {
-    name: "Cashew",
-    zh: "腰果",
-    image: "https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=900&q=80",
-  },
-  {
-    name: "Mango",
-    zh: "芒果",
-    image: "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=900&q=80",
+    name: "Nuts & Kernels",
+    zh: "坚果与果仁",
+    image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=900&q=80",
   },
   {
     name: "Rice",
     zh: "大米",
-    image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=900&q=80",
   },
   {
     name: "Pepper & Spices",
@@ -146,35 +141,70 @@ const productShowcase = [
     image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=900&q=80",
   },
   {
-    name: "Coffee",
-    zh: "咖啡",
-    image: "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=900&q=80",
+    name: "Coffee Beans",
+    zh: "咖啡豆",
+    image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=900&q=80",
   },
   {
     name: "Dried Fruit",
     zh: "果干",
-    image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=900&q=80",
+    image: "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "Processed Food",
+    zh: "加工食品",
+    image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=900&q=80",
   },
 ];
 
-const businessScopes = [
+const documentCapabilities = [
   {
-    title: "Market Route Planning",
-    zh: "出口路线判断",
-    detail: "China, EU, USA, Japan, ASEAN, and Middle East readiness paths.",
-    image: "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=900&q=80",
+    title: "HACCP Manual",
+    zh: "HACCP 手册",
+    detail: "Defines the food safety system, process flow, hazard controls, CCP logic, monitoring, verification, and records.",
+    work: ["Confirm product and process flow", "Identify hazards and control measures", "Prepare monitoring and verification records"],
   },
   {
-    title: "Certification Preparation",
-    zh: "认证准备支持",
-    detail: "HACCP, GACC, HALAL, ISO 22000, label review, and buyer audit evidence.",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80",
+    title: "GACC Registration File",
+    zh: "GACC 注册资料",
+    detail: "Organizes factory profile, product scope, licenses, process information, food safety evidence, and China-facing registration materials.",
+    work: ["Check factory and product eligibility", "Prepare profile and supporting licenses", "Align documents with China route requirements"],
   },
   {
-    title: "Factory Evidence System",
-    zh: "工厂证据体系",
-    detail: "Documents, training records, traceability records, CAPA, and annual upkeep.",
-    image: "https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?auto=format&fit=crop&w=900&q=80",
+    title: "Label Review Pack",
+    zh: "标签审核资料",
+    detail: "Reviews product name, ingredients, nutrition, origin, claims, language, importer details, and destination-market label format.",
+    work: ["Collect product formula and label draft", "Check mandatory label fields", "List corrections before printing"],
+  },
+  {
+    title: "Traceability Records",
+    zh: "追溯记录",
+    detail: "Connects raw materials, batches, processing dates, packing, storage, shipment, and recall readiness.",
+    work: ["Map batch coding method", "Link supplier and production records", "Prepare mock recall evidence"],
+  },
+  {
+    title: "Training Records",
+    zh: "培训记录",
+    detail: "Shows that staff understand hygiene, food safety, CCP monitoring, cleaning, allergen control, and export requirements.",
+    work: ["Define training topics", "Prepare attendance and assessment records", "Keep annual refresh evidence"],
+  },
+  {
+    title: "SSOP & Sanitation Logs",
+    zh: "卫生标准程序",
+    detail: "Documents cleaning responsibilities, frequencies, chemicals, verification, pest control, water checks, and sanitation evidence.",
+    work: ["Write cleaning procedures", "Set record templates", "Check water, pest, and hygiene evidence"],
+  },
+  {
+    title: "Supplier Approval File",
+    zh: "供应商审核资料",
+    detail: "Collects supplier licenses, specifications, declarations, incoming checks, and risk-based approval evidence.",
+    work: ["Build supplier list", "Collect declarations and specifications", "Set incoming inspection records"],
+  },
+  {
+    title: "Buyer Audit Pack",
+    zh: "买家审核包",
+    detail: "Prepares a practical evidence set for buyers: system documents, records, photos, corrective actions, and readiness summary.",
+    work: ["Organize key evidence", "Prepare gap and CAPA status", "Build a buyer-facing summary"],
   },
 ];
 
@@ -220,13 +250,14 @@ const resources = [
 const servicePackages = [
   ["Start Free", "Readiness Snapshot", "Rules-only market route and first-gap assessment."],
   ["Step 2", "Gap Analysis", "Consultant-reviewed report and preparation roadmap."],
-  ["Step 3", "Compliance Workspace", "HACCP, GACC, documents, tasks, evidence, and paid AI drafts."],
+  ["Step 3", "Compliance Workspace", "HACCP, GACC, documents, tasks, evidence, and consultant-reviewed drafts."],
   ["Ongoing", "Annual Support", "Renewal reminders, buyer audit readiness, and market expansion support."],
 ];
 
 export function HomePage() {
   const [selectedMarkets, setSelectedMarkets] = useState(["china"]);
   const [featuredMarketId, setFeaturedMarketId] = useState("china");
+  const [activeDocument, setActiveDocument] = useState(documentCapabilities[0]);
 
   const selectedRoutes = useMemo(
     () => marketRoutes.filter((market) => selectedMarkets.includes(market.id)),
@@ -360,23 +391,37 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="site-section visual-section" id="scope">
+      <section className="site-section document-section" id="scope">
         <div className="site-section-heading">
-          <p className="eyebrow">What CERE covers</p>
-          <h2>Market routes, certification preparation, and factory evidence.</h2>
-          <p className="zh">我们覆盖出口准备、认证咨询准备和持续合规证据管理，不负责发证或政府审批。</p>
+          <p className="eyebrow">Document preparation</p>
+          <h2>Files we help factories prepare before certification, registration, and buyer audits.</h2>
+          <p className="zh">我们协助整理出口准备所需文件与证据，不负责发证或政府审批。</p>
         </div>
-        <div className="scope-visual-grid">
-          {businessScopes.map((scope) => (
-            <article className="scope-visual-card" key={scope.title}>
-              <img alt="" src={scope.image} />
-              <div>
-                <strong>{scope.title}</strong>
-                <small>{scope.zh}</small>
-                <p>{scope.detail}</p>
-              </div>
-            </article>
-          ))}
+        <div className="document-layout">
+          <div className="document-grid" aria-label="Document preparation scope">
+            {documentCapabilities.map((document) => (
+              <button
+                className={activeDocument.title === document.title ? "document-chip active" : "document-chip"}
+                key={document.title}
+                onClick={() => setActiveDocument(document)}
+                type="button"
+              >
+                <span>{document.title}</span>
+                <small>{document.zh}</small>
+              </button>
+            ))}
+          </div>
+          <aside className="document-popover" aria-live="polite">
+            <p className="eyebrow">What this file covers</p>
+            <strong>{activeDocument.title}</strong>
+            <small>{activeDocument.zh}</small>
+            <p>{activeDocument.detail}</p>
+            <ul>
+              {activeDocument.work.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </aside>
         </div>
         <div className="certification-wall">
           {certificationBadges.map((badge) => (
@@ -387,8 +432,8 @@ export function HomePage() {
 
       <section className="site-section product-section">
         <div className="site-section-heading">
-          <p className="eyebrow">Food categories</p>
-          <h2>Built first for cashew, expandable across Cambodia food exports.</h2>
+          <p className="eyebrow">Export categories</p>
+          <h2>Food and agricultural products we can support for export preparation.</h2>
         </div>
         <div className="product-showcase">
           {productShowcase.map((product) => (
@@ -405,7 +450,7 @@ export function HomePage() {
         <div className="site-section-heading">
           <p className="eyebrow">Target markets</p>
           <h2>Choose your export destination</h2>
-          <p>Pick one or more markets. The first recommendation is rule-generated, not AI-generated.</p>
+          <p>Pick one or more markets to see the documents, readiness gaps, and first consulting step for each route.</p>
         </div>
 
         <div className="market-selector-layout">
@@ -518,8 +563,8 @@ export function HomePage() {
         </div>
         <div className="belief-grid">
           <article>
-            <strong>Rules Before AI</strong>
-            <p>Structured compliance logic comes first. AI drafts are limited to paid, reviewed workflows.</p>
+            <strong>Rules First</strong>
+            <p>Structured compliance logic comes first, so recommendations stay tied to route requirements and evidence.</p>
           </article>
           <article>
             <strong>Evidence Matters</strong>
