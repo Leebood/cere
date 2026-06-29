@@ -2291,9 +2291,399 @@ button.secondary:hover {
     min-width: 0;
   }
 
-  .inline-control,
-  .actions,
-  .generate-control {
+.inline-control,
+.actions,
+.generate-control {
     display: grid;
+  }
+}
+
+.cere-site {
+  min-height: 100vh;
+  background: #f6f5f1;
+  color: #18211c;
+}
+
+.cere-nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid #ddd9cf;
+  background: rgba(246, 245, 241, 0.94);
+  padding: 18px clamp(18px, 4vw, 54px);
+  backdrop-filter: blur(14px);
+}
+
+.cere-brand,
+.cere-nav a,
+.cere-footer a,
+.cere-button {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cere-brand {
+  display: grid;
+  gap: 3px;
+}
+
+.cere-brand span {
+  color: #1d5b40;
+  font-size: 21px;
+  font-weight: 850;
+}
+
+.cere-brand small {
+  color: #667064;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cere-nav nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.cere-nav nav a {
+  border-radius: 8px;
+  color: #3d483f;
+  font-size: 14px;
+  font-weight: 720;
+  padding: 8px 9px;
+}
+
+.cere-nav nav a:hover {
+  background: #e9eee4;
+  color: #1d5b40;
+}
+
+.cere-hero,
+.cere-section,
+.cere-footer {
+  margin: 0 auto;
+  max-width: 1180px;
+}
+
+.cere-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+  gap: clamp(22px, 4vw, 48px);
+  align-items: center;
+  min-height: calc(100vh - 76px);
+  padding: clamp(42px, 8vw, 92px) clamp(18px, 4vw, 34px);
+}
+
+.cere-hero-copy {
+  display: grid;
+  gap: 24px;
+}
+
+.cere-eyebrow {
+  margin: 0;
+  color: #7a5a38;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.cere-hero h1,
+.cere-section h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.cere-hero h1 {
+  max-width: 780px;
+  font-size: clamp(48px, 7vw, 86px);
+  line-height: 0.98;
+}
+
+.cere-hero-copy > p:not(.cere-eyebrow),
+.cere-section-heading > p:not(.cere-eyebrow) {
+  margin: 0;
+  color: #515b53;
+  font-size: 18px;
+  line-height: 1.58;
+}
+
+.cere-hero-copy > p:not(.cere-eyebrow) {
+  max-width: 720px;
+  font-size: 20px;
+}
+
+.cere-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cere-button {
+  display: inline-grid;
+  min-height: 44px;
+  place-items: center;
+  border: 1px solid #c9cec4;
+  border-radius: 8px;
+  background: #fffefa;
+  color: #1d5b40;
+  font-weight: 780;
+  padding: 10px 15px;
+}
+
+.cere-button.primary {
+  border-color: #1d5b40;
+  background: #1d5b40;
+  color: white;
+}
+
+.cere-hero-panel {
+  overflow: hidden;
+  border: 1px solid #ddd9cf;
+  border-radius: 8px;
+  background: #fffefa;
+}
+
+.cere-hero-panel img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.45;
+  object-fit: cover;
+}
+
+.cere-hero-panel div {
+  display: grid;
+  gap: 8px;
+  padding: 22px;
+}
+
+.cere-hero-panel strong {
+  font-size: 22px;
+}
+
+.cere-hero-panel p,
+.cere-card-grid p,
+.cere-market-list p,
+.cere-process p,
+.cere-contact-box p,
+.cere-footer p {
+  margin: 0;
+  color: #5b645c;
+  line-height: 1.5;
+}
+
+.cere-section {
+  display: grid;
+  gap: 28px;
+  border-top: 1px solid #ddd9cf;
+  padding: clamp(46px, 7vw, 78px) clamp(18px, 4vw, 34px);
+}
+
+.cere-section.compact {
+  padding-top: 18px;
+}
+
+.cere-section.muted {
+  max-width: none;
+  background: #eef2e9;
+}
+
+.cere-section.muted > * {
+  width: min(1112px, calc(100vw - 36px));
+  margin-inline: auto;
+}
+
+.cere-section-heading {
+  display: grid;
+  gap: 12px;
+  max-width: 820px;
+}
+
+.cere-section h2 {
+  font-size: clamp(32px, 4.8vw, 56px);
+  line-height: 1.04;
+}
+
+.cere-value-grid,
+.cere-card-grid,
+.cere-market-list {
+  display: grid;
+  gap: 12px;
+}
+
+.cere-value-grid,
+.cere-card-grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cere-value-grid article,
+.cere-card-grid article,
+.cere-market-list article,
+.cere-contact-box {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  border: 1px solid #ddd9cf;
+  border-radius: 8px;
+  background: #fffefa;
+  padding: 20px;
+}
+
+.cere-value-grid span,
+.cere-process span {
+  color: #a66735;
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.cere-value-grid strong,
+.cere-card-grid strong,
+.cere-market-list strong,
+.cere-process strong,
+.cere-contact-box strong {
+  color: #18211c;
+  font-size: 20px;
+  line-height: 1.18;
+}
+
+.cere-tag-grid,
+.cere-deliverable-list,
+.cere-platform-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cere-tag-grid span,
+.cere-deliverable-list span,
+.cere-platform-list span {
+  border: 1px solid #d6d2c8;
+  border-radius: 999px;
+  background: #fffefa;
+  color: #303b33;
+  font-weight: 760;
+  padding: 10px 13px;
+}
+
+.cere-market-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cere-process {
+  display: grid;
+  gap: 0;
+  border: 1px solid #ddd9cf;
+  border-radius: 8px;
+  background: #fffefa;
+}
+
+.cere-process article {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 16px;
+  padding: 20px;
+}
+
+.cere-process article + article {
+  border-top: 1px solid #ece7dd;
+}
+
+.cere-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1fr);
+  gap: 26px;
+  align-items: start;
+}
+
+.cere-platform-list {
+  align-content: start;
+}
+
+.cere-section.contact {
+  padding-bottom: 42px;
+}
+
+.cere-contact-box {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.cere-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-top: 1px solid #ddd9cf;
+  padding: 24px clamp(18px, 4vw, 34px) 36px;
+}
+
+.cere-footer strong {
+  color: #1d5b40;
+  font-size: 20px;
+}
+
+.cere-footer p {
+  max-width: 680px;
+  font-size: 14px;
+}
+
+.cere-footer a {
+  color: #1d5b40;
+  font-weight: 780;
+}
+
+@media (max-width: 900px) {
+  .cere-nav,
+  .cere-footer {
+    display: grid;
+  }
+
+  .cere-nav nav {
+    justify-content: start;
+  }
+
+  .cere-hero,
+  .cere-value-grid,
+  .cere-card-grid.three,
+  .cere-market-list,
+  .cere-split,
+  .cere-contact-box {
+    grid-template-columns: 1fr;
+  }
+
+  .cere-hero {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .cere-nav {
+    padding: 14px;
+  }
+
+  .cere-nav nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cere-hero,
+  .cere-section {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .cere-hero h1 {
+    font-size: 42px;
+  }
+
+  .cere-process article {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
