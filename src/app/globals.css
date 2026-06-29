@@ -2365,6 +2365,7 @@ button.secondary:hover {
 
 .cere-hero,
 .cere-section,
+.cere-page-hero,
 .cere-footer {
   margin: 0 auto;
   max-width: 1180px;
@@ -2523,6 +2524,28 @@ button.secondary:hover {
 .cere-section h2 {
   font-size: clamp(32px, 4.8vw, 56px);
   line-height: 1.04;
+}
+
+.cere-page-hero {
+  display: grid;
+  gap: 14px;
+  padding: clamp(46px, 8vw, 90px) clamp(18px, 4vw, 34px) clamp(34px, 5vw, 58px);
+}
+
+.cere-page-hero h1 {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.cere-page-hero p:not(.cere-eyebrow) {
+  max-width: 820px;
+  margin: 0;
+  color: #515b53;
+  font-size: 19px;
+  line-height: 1.55;
 }
 
 .cere-value-grid,
