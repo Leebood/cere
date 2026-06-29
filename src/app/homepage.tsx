@@ -11,6 +11,13 @@ const marketRoutes = [
     timeline: "4-8 months",
     route: "HACCP readiness, GACC preparation, Chinese label review, manufacturer registration file.",
     requirements: ["HACCP", "GACC", "Chinese label", "Traceability", "Authority-facing profile"],
+    documents: [
+      "HACCP manual and hazard analysis",
+      "GACC registration file",
+      "Chinese label draft",
+      "Production license and factory profile",
+      "Traceability and sanitation records",
+    ],
     products: ["Cashew", "Pepper", "Rice", "Dried fruit", "Coffee"],
     gaps: ["HACCP evidence", "GACC file", "Chinese label"],
   },
@@ -22,6 +29,13 @@ const marketRoutes = [
     timeline: "5-10 months",
     route: "Food safety system, traceability, buyer audit readiness, allergen and recall evidence.",
     requirements: ["HACCP", "Traceability", "Allergen control", "Supplier approval", "Recall procedure"],
+    documents: [
+      "Food safety system file",
+      "Traceability procedure and batch records",
+      "Supplier approval records",
+      "Allergen and recall procedures",
+      "Buyer audit evidence pack",
+    ],
     products: ["Cashew", "Mango", "Pepper", "Rice", "Processed food"],
     gaps: ["Traceability", "Supplier approval", "Buyer audit evidence"],
   },
@@ -33,6 +47,13 @@ const marketRoutes = [
     timeline: "5-10 months",
     route: "Preventive-control mindset, importer expectations, sanitation records, supplier verification.",
     requirements: ["Food safety plan", "Preventive controls", "Sanitation records", "Supplier verification", "Recall readiness"],
+    documents: [
+      "Food safety plan",
+      "Preventive controls records",
+      "Sanitation and pest control logs",
+      "Supplier verification file",
+      "Recall and importer support file",
+    ],
     products: ["Cashew", "Dried fruit", "Spices", "Coffee", "Processed food"],
     gaps: ["Preventive controls", "Sanitation evidence", "Importer file"],
   },
@@ -44,6 +65,13 @@ const marketRoutes = [
     timeline: "4-8 months",
     route: "Quality discipline, product specifications, process control, importer documentation.",
     requirements: ["HACCP", "Product specification", "Quality records", "Importer checks", "Complaint handling"],
+    documents: [
+      "HACCP evidence file",
+      "Product specification sheet",
+      "Process control records",
+      "Quality inspection records",
+      "Complaint handling procedure",
+    ],
     products: ["Cashew", "Pepper", "Coffee", "Mango", "Rice"],
     gaps: ["Product specification", "Quality records", "Process control"],
   },
@@ -55,6 +83,13 @@ const marketRoutes = [
     timeline: "2-5 months",
     route: "Baseline food safety documents, export documentation, shipment evidence by destination.",
     requirements: ["Export documents", "HACCP baseline", "Certificate of origin", "Health certificate", "Shipment file"],
+    documents: [
+      "Export document checklist",
+      "Certificate of origin support file",
+      "Health certificate support evidence",
+      "Baseline HACCP records",
+      "Shipment and packing file",
+    ],
     products: ["Cashew", "Rice", "Pepper", "Mango", "Cassava"],
     gaps: ["Export documents", "Baseline HACCP", "Shipment evidence"],
   },
@@ -66,12 +101,17 @@ const marketRoutes = [
     timeline: "4-8 months",
     route: "HALAL readiness, ingredient controls, HACCP documents, export health evidence.",
     requirements: ["HALAL readiness", "HACCP", "Ingredient controls", "Supplier declarations", "Health evidence"],
+    documents: [
+      "HALAL readiness checklist",
+      "Ingredient and supplier declarations",
+      "HACCP manual and records",
+      "Cleaning and segregation evidence",
+      "Export health evidence file",
+    ],
     products: ["Cashew", "Rice", "Coffee", "Processed food", "Spices"],
     gaps: ["HALAL readiness", "Supplier declarations", "Health evidence"],
   },
 ];
-
-const exportMarkets = ["China", "EU", "USA", "Japan", "ASEAN", "Middle East"];
 
 const certificationBadges = [
   "HACCP",
@@ -186,10 +226,16 @@ const servicePackages = [
 
 export function HomePage() {
   const [selectedMarkets, setSelectedMarkets] = useState(["china"]);
+  const [featuredMarketId, setFeaturedMarketId] = useState("china");
 
   const selectedRoutes = useMemo(
     () => marketRoutes.filter((market) => selectedMarkets.includes(market.id)),
     [selectedMarkets],
+  );
+
+  const featuredMarket = useMemo(
+    () => marketRoutes.find((market) => market.id === featuredMarketId) ?? marketRoutes[0],
+    [featuredMarketId],
   );
 
   const snapshot = useMemo(() => {
@@ -226,6 +272,11 @@ export function HomePage() {
 
       return [...current, marketId];
     });
+  }
+
+  function chooseFeaturedMarket(marketId: string) {
+    setFeaturedMarketId(marketId);
+    setSelectedMarkets((current) => (current.includes(marketId) ? current : [...current, marketId]));
   }
 
   return (
@@ -276,10 +327,30 @@ export function HomePage() {
           <div className="destination-panel">
             <p className="eyebrow">Target destinations</p>
             <div className="destination-grid">
-              {exportMarkets.map((market) => (
-                <span key={market}>{market}</span>
+              {marketRoutes.map((market) => (
+                <button
+                  className={featuredMarket.id === market.id ? "destination-chip active" : "destination-chip"}
+                  key={market.id}
+                  onClick={() => chooseFeaturedMarket(market.id)}
+                  type="button"
+                >
+                  <span>{market.name}</span>
+                  <small>{market.zh}</small>
+                </button>
               ))}
             </div>
+          </div>
+          <div className="hero-document-panel">
+            <div>
+              <p className="eyebrow">Core documents</p>
+              <strong>{featuredMarket.name} preparation file</strong>
+              <small>{featuredMarket.zh} · {featuredMarket.timeline}</small>
+            </div>
+            <ul>
+              {featuredMarket.documents.map((document) => (
+                <li key={document}>{document}</li>
+              ))}
+            </ul>
           </div>
           <div className="cert-strip" aria-label="Certification readiness scope">
             {certificationBadges.slice(0, 5).map((badge) => (
@@ -390,6 +461,11 @@ export function HomePage() {
               </div>
               <p>{market.route}</p>
               <small>{market.timeline}</small>
+              <ul className="document-list">
+                {market.documents.slice(0, 4).map((document) => (
+                  <li key={document}>{document}</li>
+                ))}
+              </ul>
               <ul>
                 {market.requirements.map((requirement) => (
                   <li key={requirement}>{requirement}</li>

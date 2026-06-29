@@ -260,8 +260,9 @@ pre {
   gap: 8px;
 }
 
-.destination-grid span {
+.destination-chip {
   display: grid;
+  gap: 2px;
   min-height: 48px;
   place-items: center;
   border: 1px solid #d8d7cf;
@@ -269,12 +270,82 @@ pre {
   background: #f7f5ee;
   color: #18211c;
   font-weight: 780;
+  padding: 8px;
+  text-align: center;
 }
 
-.destination-grid span:first-child {
+.destination-chip:hover,
+.destination-chip.active {
   border-color: #1e5a3f;
   background: #eef2e9;
   color: #1e5a3f;
+}
+
+.destination-chip span {
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.destination-chip small {
+  color: #7d887b;
+  font-size: 11px;
+}
+
+.hero-document-panel {
+  display: grid;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  padding: 14px;
+}
+
+.hero-document-panel > div {
+  display: grid;
+  gap: 4px;
+}
+
+.hero-document-panel .eyebrow {
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: 2px;
+}
+
+.hero-document-panel strong {
+  font-size: 18px;
+}
+
+.hero-document-panel small {
+  color: rgba(255, 255, 255, 0.66);
+  font-weight: 700;
+}
+
+.hero-document-panel ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-document-panel li {
+  position: relative;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 13px;
+  font-weight: 660;
+  line-height: 1.35;
+  padding-left: 18px;
+}
+
+.hero-document-panel li::before {
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #f1a15d;
+  content: "";
 }
 
 .cert-strip,
@@ -724,6 +795,18 @@ pre {
   margin: 0;
   padding-left: 18px;
   color: #3d483f;
+}
+
+.route-detail-card .document-list {
+  gap: 7px;
+  border-top: 1px solid #e3ded2;
+  border-bottom: 1px solid #e3ded2;
+  padding: 10px 0 10px 18px;
+}
+
+.route-detail-card .document-list li {
+  color: #18211c;
+  font-weight: 680;
 }
 
 .journey-line {
