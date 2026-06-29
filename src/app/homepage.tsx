@@ -14,30 +14,66 @@ const solutions = [
     title: "Export Readiness Assessment",
     problem: "The business is not sure whether it can enter a target market.",
     detail: "Review the product, destination market, current documents, and factory evidence before committing to a certification route.",
+    deliverables: ["Readiness summary", "Gap list", "Preparation roadmap"],
   },
   {
     title: "Compliance Preparation",
     problem: "Documents, records, and operating procedures are incomplete or inconsistent.",
     detail: "Prepare the practical systems behind HACCP, GMP, SSOP, SOPs, training records, traceability, and corrective actions.",
+    deliverables: ["System documents", "Record templates", "Implementation checklist"],
   },
   {
-    title: "Audit and Registration Support",
-    problem: "A buyer, authority, or certification route requires reviewable evidence.",
-    detail: "Support certification audits, buyer audits, GACC preparation, label review, and market-entry document checks.",
+    title: "Documentation",
+    problem: "The factory has operations, but the evidence is not organized for external review.",
+    detail: "Build manuals, forms, records, templates, and document indexes that match the route and audit purpose.",
+    deliverables: ["Manuals", "Forms", "Document register"],
+  },
+  {
+    title: "Label Review",
+    problem: "The label needs to match destination-market expectations before printing or shipment.",
+    detail: "Review product name, ingredients, nutrition, claims, origin, importer details, language, and mandatory fields.",
+    deliverables: ["Label gap list", "Correction notes", "Review checklist"],
+  },
+  {
+    title: "Audit Support",
+    problem: "A certification body or buyer needs evidence that can be reviewed quickly.",
+    detail: "Prepare audit files, evidence summaries, corrective action status, and mock-audit readiness checks.",
+    deliverables: ["Audit pack", "CAPA status", "Evidence index"],
+  },
+  {
+    title: "Continuous Compliance",
+    problem: "Export readiness must be maintained after the first audit or registration package.",
+    detail: "Support renewals, training updates, record maintenance, buyer audit preparation, and new-market expansion.",
+    deliverables: ["Renewal tracker", "Annual review", "Update plan"],
   },
 ];
 
 const deliverables = [
-  "HACCP package",
-  "GACC preparation file",
-  "Food safety manual",
-  "Hazard analysis",
-  "CCP plan",
-  "SSOP and SOP records",
-  "Training records",
-  "Traceability file",
-  "Label review pack",
-  "Buyer audit pack",
+  {
+    group: "Management System",
+    purpose: "Shows how the factory controls food safety and export preparation.",
+    items: ["Food safety manual", "HACCP package", "GMP / SSOP / SOP set"],
+  },
+  {
+    group: "Documentation",
+    purpose: "Turns daily operations into reviewable records and templates.",
+    items: ["Hazard analysis", "CCP plan", "Monitoring forms", "Traceability file"],
+  },
+  {
+    group: "Training",
+    purpose: "Shows that staff understand hygiene, process control, and export requirements.",
+    items: ["Training plan", "Attendance records", "Assessment records"],
+  },
+  {
+    group: "Audit",
+    purpose: "Prepares evidence for buyer audits, certification audits, and internal checks.",
+    items: ["Buyer audit pack", "Internal audit plan", "CAPA status"],
+  },
+  {
+    group: "Registration",
+    purpose: "Organizes market-entry preparation for routes that require registration or label review.",
+    items: ["GACC preparation file", "Factory profile", "Label review pack"],
+  },
 ];
 
 const markets = [
@@ -92,11 +128,41 @@ const markets = [
 ];
 
 const processSteps = [
-  ["01", "Initial consultation", "Understand product, target market, factory status, and current documents."],
-  ["02", "Route review", "Identify market requirements, certification route, registration needs, and likely gaps."],
-  ["03", "Gap analysis", "Review documents and factory evidence, then prepare a practical readiness roadmap."],
-  ["04", "Preparation work", "Build the required files, records, templates, training evidence, and corrective actions."],
-  ["05", "Audit support", "Support certification, buyer audit, registration preparation, and annual maintenance."],
+  {
+    number: "01",
+    title: "Initial consultation",
+    purpose: "Understand product, target market, factory status, and current documents.",
+    output: "Consultation notes and required information list.",
+    client: "Product details, target market, current licenses, and existing certification status.",
+  },
+  {
+    number: "02",
+    title: "Route review",
+    purpose: "Identify market requirements, certification route, registration needs, and likely gaps.",
+    output: "Recommended route and preparation priorities.",
+    client: "Confirm product scope, buyer request, destination, and timeline.",
+  },
+  {
+    number: "03",
+    title: "Gap analysis",
+    purpose: "Review documents and factory evidence, then prepare a practical readiness roadmap.",
+    output: "Gap report, risk list, and corrective action priorities.",
+    client: "Share records, photos, process flow, training files, and audit history if available.",
+  },
+  {
+    number: "04",
+    title: "Preparation work",
+    purpose: "Build the required files, records, templates, training evidence, and corrective actions.",
+    output: "Document packages, record templates, and evidence index.",
+    client: "Implement records, assign responsible staff, and provide operational evidence.",
+  },
+  {
+    number: "05",
+    title: "Audit support",
+    purpose: "Support certification, buyer audit, registration preparation, and annual maintenance.",
+    output: "Audit pack, review notes, and annual follow-up plan.",
+    client: "Maintain records, respond to findings, and update files when products or markets change.",
+  },
 ];
 
 const platformItems = [
@@ -231,6 +297,11 @@ export function HomePage() {
               <strong>{solution.title}</strong>
               <span>{solution.problem}</span>
               <p>{solution.detail}</p>
+              <ul className="solution-deliverables">
+                {solution.deliverables.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>
@@ -246,12 +317,22 @@ export function HomePage() {
           </p>
         </div>
         <div className="cere-process">
-          {processSteps.map(([number, title, detail]) => (
-            <article key={number}>
-              <span>{number}</span>
+          {processSteps.map((step) => (
+            <article key={step.number}>
+              <span>{step.number}</span>
               <div>
-                <strong>{title}</strong>
-                <p>{detail}</p>
+                <strong>{step.title}</strong>
+                <p>{step.purpose}</p>
+                <dl>
+                  <div>
+                    <dt>Output</dt>
+                    <dd>{step.output}</dd>
+                  </div>
+                  <div>
+                    <dt>Client input</dt>
+                    <dd>{step.client}</dd>
+                  </div>
+                </dl>
               </div>
             </article>
           ))}
@@ -266,9 +347,17 @@ export function HomePage() {
             Each project produces practical documents, records, and preparation packs tied to the chosen market route.
           </p>
         </div>
-        <div className="cere-deliverable-list">
+        <div className="deliverable-grid">
           {deliverables.map((deliverable) => (
-            <span key={deliverable}>{deliverable}</span>
+            <article key={deliverable.group}>
+              <strong>{deliverable.group}</strong>
+              <p>{deliverable.purpose}</p>
+              <ul>
+                {deliverable.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </article>
           ))}
         </div>
       </section>
