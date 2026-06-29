@@ -2477,6 +2477,13 @@ button.secondary:hover {
   line-height: 1.5;
 }
 
+.cere-card-grid article > span {
+  color: #7a5a38;
+  font-size: 13px;
+  font-weight: 780;
+  line-height: 1.35;
+}
+
 .cere-section {
   display: grid;
   gap: 28px;
@@ -2488,9 +2495,18 @@ button.secondary:hover {
   padding-top: 18px;
 }
 
+.cere-section.compact-products {
+  padding-top: clamp(36px, 5vw, 54px);
+  padding-bottom: clamp(36px, 5vw, 54px);
+}
+
 .cere-section.muted {
   max-width: none;
   background: #eef2e9;
+}
+
+.cere-section.market-priority {
+  background: #f0f3ec;
 }
 
 .cere-section.muted > * {
@@ -2573,6 +2589,77 @@ button.secondary:hover {
 
 .cere-market-list {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cere-market-list.priority {
+  gap: 14px;
+}
+
+.cere-market-list.priority article {
+  gap: 16px;
+}
+
+.market-card-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.market-card-head span {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #eef2e9;
+  color: #1d5b40;
+  font-family: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 850;
+  padding: 7px 9px;
+}
+
+.market-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  border-top: 1px solid #e7e2d8;
+  padding-top: 14px;
+}
+
+.market-detail-grid div {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.market-detail-grid small {
+  color: #7a5a38;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.market-detail-grid ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+  color: #38433b;
+  line-height: 1.35;
+}
+
+.market-consult-link {
+  width: fit-content;
+  border-radius: 8px;
+  background: #1d5b40;
+  color: white;
+  font-weight: 780;
+  padding: 9px 11px;
+  text-decoration: none;
+}
+
+.cere-tag-grid.compact span {
+  padding: 8px 11px;
 }
 
 .cere-process {
@@ -2685,5 +2772,11 @@ button.secondary:hover {
   .cere-process article {
     grid-template-columns: 1fr;
     gap: 8px;
+  }
+
+  .market-card-head,
+  .market-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }

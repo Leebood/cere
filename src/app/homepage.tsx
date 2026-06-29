@@ -12,14 +12,17 @@ const productCategories = [
 const solutions = [
   {
     title: "Export Readiness Assessment",
+    problem: "The business is not sure whether it can enter a target market.",
     detail: "Review the product, destination market, current documents, and factory evidence before committing to a certification route.",
   },
   {
     title: "Compliance Preparation",
+    problem: "Documents, records, and operating procedures are incomplete or inconsistent.",
     detail: "Prepare the practical systems behind HACCP, GMP, SSOP, SOPs, training records, traceability, and corrective actions.",
   },
   {
     title: "Audit and Registration Support",
+    problem: "A buyer, authority, or certification route requires reviewable evidence.",
     detail: "Support certification audits, buyer audits, GACC preparation, label review, and market-entry document checks.",
   },
 ];
@@ -38,12 +41,54 @@ const deliverables = [
 ];
 
 const markets = [
-  ["China", "GACC preparation, HACCP evidence, Chinese label review, factory profile."],
-  ["European Union", "Traceability, supplier approval, allergen control, buyer audit evidence."],
-  ["United States", "Food safety plan, sanitation records, supplier verification, recall readiness."],
-  ["Japan", "Product specification, process control, quality records, importer documentation."],
-  ["ASEAN", "Export documents, origin support, health certificate evidence, shipment file."],
-  ["Middle East", "HALAL readiness, ingredient controls, HACCP records, export health evidence."],
+  {
+    name: "China",
+    summary: "Best for factories preparing GACC registration, Chinese label review, and structured food safety evidence.",
+    requirements: ["HACCP evidence", "GACC preparation", "Chinese label review", "Factory profile"],
+    documents: ["HACCP package", "GACC file", "Label review pack", "Traceability records"],
+    timeline: "4-8 months",
+    consultation: "Route review + GACC readiness check",
+  },
+  {
+    name: "European Union",
+    summary: "Best for exporters facing buyer audit expectations, traceability checks, and stricter supplier controls.",
+    requirements: ["Traceability", "Supplier approval", "Allergen control", "Buyer audit evidence"],
+    documents: ["Food safety manual", "Supplier approval file", "Recall procedure", "Audit evidence pack"],
+    timeline: "5-10 months",
+    consultation: "Traceability + buyer audit gap analysis",
+  },
+  {
+    name: "United States",
+    summary: "Best for businesses needing stronger preventive-control thinking and importer-facing documentation.",
+    requirements: ["Food safety plan", "Sanitation records", "Supplier verification", "Recall readiness"],
+    documents: ["Food safety plan", "SSOP logs", "Supplier verification file", "Recall support file"],
+    timeline: "5-10 months",
+    consultation: "Food safety plan readiness review",
+  },
+  {
+    name: "Japan",
+    summary: "Best for exporters that need stronger product specifications, quality discipline, and process records.",
+    requirements: ["Product specification", "Quality records", "Process control", "Importer documentation"],
+    documents: ["Specification sheet", "HACCP evidence file", "Quality inspection records", "Complaint procedure"],
+    timeline: "4-8 months",
+    consultation: "Product specification + quality record review",
+  },
+  {
+    name: "ASEAN",
+    summary: "Best for regional export routes where baseline food safety and shipment documentation must be organized.",
+    requirements: ["Export documents", "Origin support", "Health certificate evidence", "Shipment file"],
+    documents: ["Export checklist", "Certificate support file", "Health evidence", "Packing and shipment file"],
+    timeline: "2-5 months",
+    consultation: "Baseline export documentation check",
+  },
+  {
+    name: "Middle East",
+    summary: "Best for products where HALAL readiness, ingredient controls, and export health evidence are important.",
+    requirements: ["HALAL readiness", "Ingredient controls", "HACCP records", "Export health evidence"],
+    documents: ["HALAL readiness checklist", "Ingredient declarations", "Cleaning evidence", "Health evidence file"],
+    timeline: "4-8 months",
+    consultation: "HALAL readiness + ingredient file review",
+  },
 ];
 
 const processSteps = [
@@ -72,11 +117,11 @@ export function HomePage() {
           <small>Cambodia Export Readiness Engine</small>
         </a>
         <nav aria-label="Main navigation">
-          <a href="#products">Products</a>
-          <a href="#solutions">Solutions</a>
-          <a href="#deliverables">Deliverables</a>
           <a href="#markets">Markets</a>
+          <a href="#solutions">Solutions</a>
           <a href="#process">Process</a>
+          <a href="#deliverables">Deliverables</a>
+          <a href="#products">Products</a>
           <a href="#platform">Platform</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -92,7 +137,7 @@ export function HomePage() {
           </p>
           <div className="cere-actions">
             <a className="cere-button primary" href="#contact">Start Consultation</a>
-            <a className="cere-button" href="#solutions">Explore Services</a>
+            <a className="cere-button" href="#markets">Explore Markets</a>
           </div>
         </div>
         <aside className="cere-hero-panel" aria-label="CERE service summary">
@@ -130,17 +175,43 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="cere-section" id="products">
+      <section className="cere-section muted market-priority" id="markets">
         <div className="cere-section-heading">
-          <p className="cere-eyebrow">Product Categories</p>
-          <h2>Support for food and agricultural exporters.</h2>
+          <p className="cere-eyebrow">Markets</p>
+          <h2>Different destinations require different preparation.</h2>
           <p>
-            We start by understanding the product, processing stage, target market, and existing certification status.
+            The first client decision is usually the target market. CERE helps clarify the route, common documents,
+            preparation time, and first consulting step before the factory invests in certification work.
           </p>
         </div>
-        <div className="cere-tag-grid">
-          {productCategories.map((category) => (
-            <span key={category}>{category}</span>
+        <div className="cere-market-list priority">
+          {markets.map((market) => (
+            <article key={market.name}>
+              <div className="market-card-head">
+                <strong>{market.name}</strong>
+                <span>{market.timeline}</span>
+              </div>
+              <p>{market.summary}</p>
+              <div className="market-detail-grid">
+                <div>
+                  <small>Core requirements</small>
+                  <ul>
+                    {market.requirements.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <small>Common files</small>
+                  <ul>
+                    {market.documents.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <a className="market-consult-link" href="#contact">{market.consultation}</a>
+            </article>
           ))}
         </div>
       </section>
@@ -158,40 +229,8 @@ export function HomePage() {
           {solutions.map((solution) => (
             <article key={solution.title}>
               <strong>{solution.title}</strong>
+              <span>{solution.problem}</span>
               <p>{solution.detail}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="cere-section" id="deliverables">
-        <div className="cere-section-heading">
-          <p className="cere-eyebrow">Deliverables</p>
-          <h2>Clear files and evidence the client can actually use.</h2>
-          <p>
-            Each project produces practical documents, records, and preparation packs tied to the chosen market route.
-          </p>
-        </div>
-        <div className="cere-deliverable-list">
-          {deliverables.map((deliverable) => (
-            <span key={deliverable}>{deliverable}</span>
-          ))}
-        </div>
-      </section>
-
-      <section className="cere-section muted" id="markets">
-        <div className="cere-section-heading">
-          <p className="cere-eyebrow">Markets</p>
-          <h2>Different destinations require different preparation.</h2>
-          <p>
-            CERE helps the client understand what changes when the destination market changes.
-          </p>
-        </div>
-        <div className="cere-market-list">
-          {markets.map(([market, detail]) => (
-            <article key={market}>
-              <strong>{market}</strong>
-              <p>{detail}</p>
             </article>
           ))}
         </div>
@@ -215,6 +254,37 @@ export function HomePage() {
                 <p>{detail}</p>
               </div>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="cere-section" id="deliverables">
+        <div className="cere-section-heading">
+          <p className="cere-eyebrow">Deliverables</p>
+          <h2>Clear files and evidence the client can actually use.</h2>
+          <p>
+            Each project produces practical documents, records, and preparation packs tied to the chosen market route.
+          </p>
+        </div>
+        <div className="cere-deliverable-list">
+          {deliverables.map((deliverable) => (
+            <span key={deliverable}>{deliverable}</span>
+          ))}
+        </div>
+      </section>
+
+      <section className="cere-section compact-products" id="products">
+        <div className="cere-section-heading">
+          <p className="cere-eyebrow">Product Categories</p>
+          <h2>A quick scope check for food and agricultural exporters.</h2>
+          <p>
+            This section is intentionally simple: the goal is to help the client quickly confirm whether their product is
+            within CERE&apos;s service scope.
+          </p>
+        </div>
+        <div className="cere-tag-grid compact">
+          {productCategories.map((category) => (
+            <span key={category}>{category}</span>
           ))}
         </div>
       </section>
