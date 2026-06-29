@@ -71,6 +71,73 @@ const marketRoutes = [
   },
 ];
 
+const exportMarkets = ["China", "EU", "USA", "Japan", "ASEAN", "Middle East"];
+
+const certificationBadges = [
+  "HACCP",
+  "GACC",
+  "HALAL",
+  "ISO 22000",
+  "BRCGS",
+  "Label Review",
+  "Traceability",
+  "Buyer Audit",
+];
+
+const productShowcase = [
+  {
+    name: "Cashew",
+    zh: "腰果",
+    image: "https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "Mango",
+    zh: "芒果",
+    image: "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "Rice",
+    zh: "大米",
+    image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "Pepper & Spices",
+    zh: "胡椒与香料",
+    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "Coffee",
+    zh: "咖啡",
+    image: "https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    name: "Dried Fruit",
+    zh: "果干",
+    image: "https://images.unsplash.com/photo-1615485500704-8e990f9900f7?auto=format&fit=crop&w=900&q=80",
+  },
+];
+
+const businessScopes = [
+  {
+    title: "Market Route Planning",
+    zh: "出口路线判断",
+    detail: "China, EU, USA, Japan, ASEAN, and Middle East readiness paths.",
+    image: "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Certification Preparation",
+    zh: "认证准备支持",
+    detail: "HACCP, GACC, HALAL, ISO 22000, label review, and buyer audit evidence.",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Factory Evidence System",
+    zh: "工厂证据体系",
+    detail: "Documents, training records, traceability records, CAPA, and annual upkeep.",
+    image: "https://images.unsplash.com/photo-1581092921461-39b9d08a9b21?auto=format&fit=crop&w=900&q=80",
+  },
+];
+
 const journeySteps = [
   "Business Intake",
   "Market Selection",
@@ -166,12 +233,12 @@ export function HomePage() {
       <header className="site-nav">
         <a className="brand" href="#home" aria-label="CERE home">
           <span>CERE</span>
-          <small>Cambodia Export Readiness Engine</small>
+          <small>Export Readiness for Cambodia Food Manufacturers</small>
         </a>
         <nav aria-label="Main navigation">
           <a href="#markets">Markets</a>
+          <a href="#scope">Scope</a>
           <a href="#journey">How It Works</a>
-          <a href="#solutions">Solutions</a>
           <a href="#workspace">Workspace</a>
           <a href="#pricing">Pricing</a>
           <a href="#resources">Resources</a>
@@ -180,49 +247,86 @@ export function HomePage() {
 
       <section className="home-hero" id="home">
         <div className="home-hero-copy">
-          <p className="eyebrow">Export readiness infrastructure for Cambodia food manufacturers</p>
+          <p className="eyebrow">Cambodia food export readiness</p>
           <h1>
-            Export with Confidence.
-            <span>Prepare once. Export everywhere.</span>
+            Prepare your factory for the markets that matter.
+            <span>出口准备，而不是简单做证书。</span>
           </h1>
           <p>
-            CERE helps food manufacturers assess export readiness, organize compliance evidence, and prepare for
-            international market requirements before the first buyer audit or registration file is submitted.
+            CERE helps food manufacturers understand destination-market requirements, close compliance gaps, and build
+            the evidence needed for certification support, registration files, and buyer audits.
           </p>
           <div className="hero-cta">
             <a className="primary-link" href="#markets">Start Readiness Check</a>
-            <a className="secondary-link" href="#journey">Explore Markets</a>
+            <a className="secondary-link" href="#scope">View Business Scope</a>
           </div>
         </div>
 
-        <div className="route-visual" aria-label="Cambodia export route map">
-          <div className="map-card">
-            <div className="map-origin">
+        <div className="hero-market-board" aria-label="Cambodia export destination board">
+          <div className="hero-photo">
+            <img
+              alt="Agricultural export containers and trade route"
+              src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1200&q=80"
+            />
+            <div className="hero-photo-label">
               <span>Cambodia</span>
               <strong>Food Export Base</strong>
             </div>
-            <div className="route-lines">
-              {marketRoutes.slice(0, 5).map((market, index) => (
-                <div className={`route-line route-${index + 1}`} key={market.id}>
-                  <span>{market.name}</span>
-                </div>
+          </div>
+          <div className="destination-panel">
+            <p className="eyebrow">Target destinations</p>
+            <div className="destination-grid">
+              {exportMarkets.map((market) => (
+                <span key={market}>{market}</span>
               ))}
             </div>
           </div>
-          <div className="proof-strip">
-            <div>
-              <strong>0-100</strong>
-              <span>Readiness Score</span>
-            </div>
-            <div>
-              <strong>6</strong>
-              <span>Market routes</span>
-            </div>
-            <div>
-              <strong>3</strong>
-              <span>Service stages</span>
-            </div>
+          <div className="cert-strip" aria-label="Certification readiness scope">
+            {certificationBadges.slice(0, 5).map((badge) => (
+              <span key={badge}>{badge}</span>
+            ))}
           </div>
+        </div>
+      </section>
+
+      <section className="site-section visual-section" id="scope">
+        <div className="site-section-heading">
+          <p className="eyebrow">What CERE covers</p>
+          <h2>Market routes, certification preparation, and factory evidence.</h2>
+          <p className="zh">我们覆盖出口准备、认证咨询准备和持续合规证据管理，不负责发证或政府审批。</p>
+        </div>
+        <div className="scope-visual-grid">
+          {businessScopes.map((scope) => (
+            <article className="scope-visual-card" key={scope.title}>
+              <img alt="" src={scope.image} />
+              <div>
+                <strong>{scope.title}</strong>
+                <small>{scope.zh}</small>
+                <p>{scope.detail}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="certification-wall">
+          {certificationBadges.map((badge) => (
+            <span key={badge}>{badge}</span>
+          ))}
+        </div>
+      </section>
+
+      <section className="site-section product-section">
+        <div className="site-section-heading">
+          <p className="eyebrow">Food categories</p>
+          <h2>Built first for cashew, expandable across Cambodia food exports.</h2>
+        </div>
+        <div className="product-showcase">
+          {productShowcase.map((product) => (
+            <article className="product-card" key={product.name}>
+              <img alt="" src={product.image} />
+              <strong>{product.name}</strong>
+              <small>{product.zh}</small>
+            </article>
+          ))}
         </div>
       </section>
 
