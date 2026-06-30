@@ -36,20 +36,26 @@ export function HomePage() {
             <a className="cere-button dark" href="/contact">Book consultation</a>
           </div>
         </div>
-        <div className="brand-map" aria-label="Choose export destination on world map">
+        <div className="brand-map" aria-label="Choose export destination on abstract route map">
           <div className="brand-map-caption">
             <span>Export routes from Cambodia</span>
             <strong>Tap a market to see what you need.</strong>
           </div>
-          <svg className="world-route-map" viewBox="0 0 980 470" role="img" aria-label="World export route map">
-            <path
-              className="map-land"
-              d="M72 159c34-48 117-69 171-42 38 19 50 59 93 73 44 14 83-12 122 10 42 24 29 74 78 94 42 17 80-12 122 4 43 17 47 61 88 67 40 6 78-29 111-4 21 16 23 50 8 73H58c-24-47-16-96 18-132 38-41 95-38 122-77 28-41-56-43-126-66Z"
-            />
-            <path
-              className="map-land subtle"
-              d="M516 91c39-28 89-33 130-10 36 20 47 55 87 69 36 13 77-1 106 24 36 31 28 91-10 123-35 29-86 25-122 7-43-22-42-61-78-76-43-18-91 17-126-13-32-27-26-92 13-124Z"
-            />
+          <svg className="world-route-map" viewBox="0 0 980 470" role="img" aria-label="Abstract export route map">
+            <g className="map-grid" aria-hidden="true">
+              <path d="M70 120H910" />
+              <path d="M70 205H910" />
+              <path d="M70 290H910" />
+              <path d="M70 375H910" />
+              <path d="M145 70V420" />
+              <path d="M314 70V420" />
+              <path d="M484 70V420" />
+              <path d="M617 70V420" />
+              <path d="M744 70V420" />
+              <path d="M792 70V420" />
+            </g>
+            <ellipse className="map-orbit" cx="490" cy="244" rx="405" ry="156" />
+            <ellipse className="map-orbit subtle" cx="490" cy="244" rx="285" ry="106" />
             <path className="map-route-line" d="M617 285 C690 222, 741 188, 792 156" />
             <path className="map-route-line" d="M617 285 C552 201, 458 153, 314 128" />
             <path className="map-route-line" d="M617 285 C432 267, 276 225, 145 186" />

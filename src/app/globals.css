@@ -2564,14 +2564,20 @@ button.secondary:hover {
   min-height: 0;
 }
 
-.map-land {
-  fill: rgba(255, 255, 255, 0.1);
-  stroke: rgba(255, 255, 255, 0.16);
+.map-grid path {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+}
+
+.map-orbit {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.15);
   stroke-width: 1.2;
 }
 
-.map-land.subtle {
-  fill: rgba(255, 255, 255, 0.075);
+.map-orbit.subtle {
+  stroke: rgba(255, 255, 255, 0.09);
 }
 
 .map-route-line {
