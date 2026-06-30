@@ -23,65 +23,117 @@ const serviceSteps = [
 export function HomePage() {
   return (
     <SiteChrome>
-      <section className="cere-hero guide-hero">
-        <div className="cere-hero-copy">
-          <p className="cere-eyebrow">Export Decision Guide</p>
-          <h1>The platform that gets you export-ready.</h1>
-          <p>
-            We do not sell certificates. We build export readiness. Start with one question: where do you want to
-            export?
+      <section className="brand-hero">
+        <div className="brand-hero-copy">
+          <p className="cere-eyebrow">Cambodia Export Readiness Engine</p>
+          <h1>CERE</h1>
+          <p className="brand-hero-lead">Export readiness for global food markets.</p>
+          <p className="brand-hero-sub">
+            Choose a destination. Understand the requirements. Prepare the evidence before you start.
           </p>
-          <div className="cere-actions">
-            <a className="cere-button primary" href="/markets">Start Free Assessment</a>
-            <a className="cere-button" href="/contact">Book Consultation</a>
+          <div className="brand-actions">
+            <a className="cere-button primary" href="#choose-market">Choose your market</a>
+            <a className="cere-button dark" href="/contact">Book consultation</a>
           </div>
         </div>
-        <aside className="guide-choice-panel" aria-label="Choose export destination">
-          <p className="cere-eyebrow">Can I export?</p>
-          <strong>Choose your destination.</strong>
-          <div className="guide-market-grid">
-            {markets.map((market) => (
-              <a className="guide-market-card" href={`/markets#${market.slug}`} key={market.slug}>
-                <span>{market.name}</span>
-                <small>{market.timeline}</small>
-              </a>
-            ))}
+        <div className="brand-map" aria-label="Choose export destination on world map">
+          <div className="brand-map-caption">
+            <span>Export routes from Cambodia</span>
+            <strong>Tap a market to see what you need.</strong>
           </div>
-        </aside>
+          <svg className="world-route-map" viewBox="0 0 980 470" role="img" aria-label="World export route map">
+            <path
+              className="map-land"
+              d="M72 159c34-48 117-69 171-42 38 19 50 59 93 73 44 14 83-12 122 10 42 24 29 74 78 94 42 17 80-12 122 4 43 17 47 61 88 67 40 6 78-29 111-4 21 16 23 50 8 73H58c-24-47-16-96 18-132 38-41 95-38 122-77 28-41-56-43-126-66Z"
+            />
+            <path
+              className="map-land subtle"
+              d="M516 91c39-28 89-33 130-10 36 20 47 55 87 69 36 13 77-1 106 24 36 31 28 91-10 123-35 29-86 25-122 7-43-22-42-61-78-76-43-18-91 17-126-13-32-27-26-92 13-124Z"
+            />
+            <path className="map-route-line" d="M617 285 C690 222, 741 188, 792 156" />
+            <path className="map-route-line" d="M617 285 C552 201, 458 153, 314 128" />
+            <path className="map-route-line" d="M617 285 C432 267, 276 225, 145 186" />
+            <path className="map-route-line" d="M617 285 C659 226, 700 191, 744 181" />
+            <path className="map-route-line" d="M617 285 C642 298, 674 314, 706 331" />
+            <path className="map-route-line" d="M617 285 C557 247, 518 212, 484 177" />
+            <circle className="map-origin-dot" cx="617" cy="285" r="8" />
+            <text className="map-origin-label" x="631" y="291">Cambodia</text>
+
+            <a className="map-market active" href="/markets#china" aria-label="China market route">
+              <circle cx="792" cy="156" r="29" />
+              <text x="792" y="162">China</text>
+            </a>
+            <a className="map-market" href="/markets#eu" aria-label="European Union market route">
+              <circle cx="484" cy="177" r="27" />
+              <text x="484" y="183">EU</text>
+            </a>
+            <a className="map-market" href="/markets#usa" aria-label="United States market route">
+              <circle cx="145" cy="186" r="30" />
+              <text x="145" y="192">USA</text>
+            </a>
+            <a className="map-market" href="/markets#japan" aria-label="Japan market route">
+              <circle cx="744" cy="181" r="25" />
+              <text x="744" y="187">Japan</text>
+            </a>
+            <a className="map-market" href="/markets#asean" aria-label="ASEAN market route">
+              <circle cx="706" cy="331" r="31" />
+              <text x="706" y="337">ASEAN</text>
+            </a>
+            <a className="map-market" href="/markets#middle-east" aria-label="Middle East market route">
+              <circle cx="314" cy="128" r="34" />
+              <text x="314" y="134">Middle East</text>
+            </a>
+          </svg>
+        </div>
       </section>
 
-      <section className="cere-section muted">
+      <section className="cere-section market-choice-section" id="choose-market">
         <div className="cere-section-heading">
-          <p className="cere-eyebrow">What do I need?</p>
-          <h2>Each destination changes the files, evidence, and preparation timeline.</h2>
+          <p className="cere-eyebrow">Start here</p>
+          <h2>Where do you want to export?</h2>
           <p>
-            The first step is not choosing a certificate. The first step is understanding what your target market will
-            ask the factory to prove.
+            Choose a destination first. Each route has different documents, evidence, and preparation timelines.
           </p>
         </div>
-        <div className="guide-route-grid">
-          {markets.slice(0, 3).map((market) => (
-            <article className="market-route-card" key={market.slug}>
-              <div className="market-card-head">
-                <strong>{market.name}</strong>
-                <span>{market.timeline}</span>
-              </div>
-              <p>{market.summary}</p>
-              <ul>
-                {market.requirements.slice(0, 4).map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <a className="market-consult-link" href={`/markets#${market.slug}`}>View this route</a>
-            </article>
+        <div className="official-market-grid">
+          {markets.map((market) => (
+            <a className="official-market-card" href={`/markets#${market.slug}`} key={market.slug}>
+              <strong>{market.name}</strong>
+              <span>{market.summary}</span>
+              <small>{market.timeline}</small>
+            </a>
           ))}
         </div>
       </section>
 
-      <section className="cere-section">
+      <section className="cere-section muted">
+        <div className="route-feature">
+          <div>
+            <p className="cere-eyebrow">What you will need</p>
+            <h2>Every market becomes a clear preparation route.</h2>
+            <p>
+              CERE helps you understand what must be prepared before registration, certification, buyer review, or
+              shipment support.
+            </p>
+          </div>
+          <article className="route-preview-card">
+            <span>Example route</span>
+            <strong>Exporting to China</strong>
+            <ul>
+              <li>HACCP readiness</li>
+              <li>GACC preparation</li>
+              <li>Chinese label review</li>
+              <li>Traceability records</li>
+            </ul>
+            <small>Estimated preparation: 4-8 months</small>
+          </article>
+        </div>
+      </section>
+
+      <section className="cere-section official-services">
         <div className="cere-section-heading">
           <p className="cere-eyebrow">Services</p>
-          <h2>How CERE helps you move from interest to export readiness.</h2>
+          <h2>From export goal to audit-ready evidence.</h2>
         </div>
         <div className="guide-flow">
           {serviceSteps.map((step, index) => (
