@@ -2,11 +2,22 @@ import { markets } from "./site-data";
 import { SiteChrome } from "./site-chrome";
 
 const serviceSteps = [
-  "Assess your readiness",
-  "Identify the gaps",
-  "Prepare the documents",
-  "Organize the evidence",
-  "Support your audit",
+  {
+    title: "Assess",
+    text: "Evaluate current readiness and identify gaps.",
+  },
+  {
+    title: "Prepare",
+    text: "Build a roadmap with tasks, timeline, and responsibilities.",
+  },
+  {
+    title: "Review",
+    text: "Check documents and evidence before external review.",
+  },
+  {
+    title: "Support",
+    text: "Guide the project until the business is export-ready.",
+  },
 ];
 
 export function HomePage() {
@@ -15,13 +26,13 @@ export function HomePage() {
       <section className="cere-hero guide-hero">
         <div className="cere-hero-copy">
           <p className="cere-eyebrow">Export Decision Guide</p>
-          <h1>Prepare your food business for global markets.</h1>
+          <h1>The platform that gets you export-ready.</h1>
           <p>
-            Start with one question: where do you want to export? CERE turns that route into requirements, preparation
-            work, and a practical consultation plan.
+            We do not sell certificates. We build export readiness. Start with one question: where do you want to
+            export?
           </p>
           <div className="cere-actions">
-            <a className="cere-button primary" href="/markets">Choose Market</a>
+            <a className="cere-button primary" href="/markets">Start Free Assessment</a>
             <a className="cere-button" href="/contact">Book Consultation</a>
           </div>
         </div>
@@ -74,14 +85,15 @@ export function HomePage() {
         </div>
         <div className="guide-flow">
           {serviceSteps.map((step, index) => (
-            <article key={step}>
+            <article key={step.title}>
               <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{step}</strong>
+              <strong>{step.title}</strong>
+              <p>{step.text}</p>
             </article>
           ))}
         </div>
         <div className="guide-service-note">
-          <strong>Readiness and compliance support only.</strong>
+          <strong>Every recommendation is evidence-based and reviewed before delivery.</strong>
           <p>
             CERE prepares documents, workflows, records, and audit evidence. We are not a certification body,
             laboratory, government approval authority, or guarantee of market access.

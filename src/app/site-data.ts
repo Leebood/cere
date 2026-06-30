@@ -12,41 +12,38 @@ export const productCategories = [
 export const solutions = [
   {
     title: "Export Readiness Assessment",
-    problem: "The business is not sure whether it can enter a target market.",
+    problem: "Know where you stand before you start.",
     detail:
-      "Review the product, destination market, current documents, and factory evidence before committing to a certification route.",
-    deliverables: ["Readiness summary", "Gap list", "Preparation roadmap"],
+      "Evaluate the factory, products, processes, current documents, and target market requirements before committing to a route.",
+    deliverables: ["Readiness score", "Gap list", "Feasibility report"],
   },
   {
-    title: "Compliance Preparation",
-    problem: "Documents, records, and operating procedures are incomplete or inconsistent.",
+    title: "Gap Analysis",
+    problem: "See the gap. Close the gap.",
     detail:
-      "Prepare the practical systems behind HACCP, GMP, SSOP, SOPs, training records, traceability, and corrective actions.",
-    deliverables: ["System documents", "Record templates", "Implementation checklist"],
+      "Compare the current situation with target market requirements and build a clear action plan with priorities.",
+    deliverables: ["Gap report", "Action plan", "Priority list"],
   },
   {
     title: "Documentation",
-    problem: "The factory has operations, but the evidence is not organized for external review.",
-    detail: "Build manuals, forms, records, templates, and document indexes that match the route and audit purpose.",
-    deliverables: ["Manuals", "Forms", "Document register"],
-  },
-  {
-    title: "Label Review",
-    problem: "The label needs to match destination-market expectations before printing or shipment.",
-    detail: "Review product name, ingredients, nutrition, claims, origin, importer details, language, and mandatory fields.",
-    deliverables: ["Label gap list", "Correction notes", "Review checklist"],
+    problem: "Get your documents right before external review.",
+    detail:
+      "Prepare, review, and organize manuals, forms, records, labels, templates, and document indexes for the export route.",
+    deliverables: ["Document checklist", "Template package", "Review and correction"],
   },
   {
     title: "Audit Support",
-    problem: "A certification body or buyer needs evidence that can be reviewed quickly.",
-    detail: "Prepare audit files, evidence summaries, corrective action status, and mock-audit readiness checks.",
-    deliverables: ["Audit pack", "CAPA status", "Evidence index"],
+    problem: "Be ready when a buyer or certification body asks for evidence.",
+    detail:
+      "Support pre-audit preparation, evidence organization, corrective action tracking, and practical audit readiness.",
+    deliverables: ["Pre-audit checklist", "Audit pack", "Follow-up actions"],
   },
   {
     title: "Continuous Compliance",
-    problem: "Export readiness must be maintained after the first audit or registration package.",
-    detail: "Support renewals, training updates, record maintenance, buyer audit preparation, and new-market expansion.",
-    deliverables: ["Renewal tracker", "Annual review", "Update plan"],
+    problem: "Stay compliant. Stay export-ready.",
+    detail:
+      "Support regulation updates, annual reviews, record maintenance, renewal preparation, and new market assessment.",
+    deliverables: ["Regulation updates", "Annual audit support", "New market assessment"],
   },
 ];
 
@@ -82,7 +79,7 @@ export const markets = [
   {
     slug: "china",
     name: "China",
-    summary: "Best for factories preparing GACC registration, Chinese label review, and structured food safety evidence.",
+    summary: "GACC registration, HACCP readiness, Chinese labels, and structured traceability evidence.",
     requirements: ["HACCP evidence", "GACC preparation", "Chinese label review", "Factory profile"],
     documents: ["HACCP package", "GACC file", "Label review pack", "Traceability records"],
     timeline: "4-8 months",
@@ -91,8 +88,8 @@ export const markets = [
   {
     slug: "eu",
     name: "European Union",
-    summary: "Best for exporters facing buyer audit expectations, traceability checks, and stricter supplier controls.",
-    requirements: ["Traceability", "Supplier approval", "Allergen control", "Buyer audit evidence"],
+    summary: "EU food safety expectations, traceability, labeling review, and buyer audit evidence.",
+    requirements: ["Traceability", "Supplier approval", "Label review", "Buyer audit evidence"],
     documents: ["Food safety manual", "Supplier approval file", "Recall procedure", "Audit evidence pack"],
     timeline: "5-10 months",
     consultation: "Traceability + buyer audit gap analysis",
@@ -100,8 +97,8 @@ export const markets = [
   {
     slug: "usa",
     name: "United States",
-    summary: "Best for businesses needing stronger preventive-control thinking and importer-facing documentation.",
-    requirements: ["Food safety plan", "Sanitation records", "Supplier verification", "Recall readiness"],
+    summary: "FDA registration support, FSMA-style preventive controls, sanitation records, and nutrition labeling.",
+    requirements: ["Food safety plan", "Sanitation records", "Supplier verification", "Nutrition label review"],
     documents: ["Food safety plan", "SSOP logs", "Supplier verification file", "Recall support file"],
     timeline: "5-10 months",
     consultation: "Food safety plan readiness review",
@@ -109,8 +106,8 @@ export const markets = [
   {
     slug: "japan",
     name: "Japan",
-    summary: "Best for exporters that need stronger product specifications, quality discipline, and process records.",
-    requirements: ["Product specification", "Quality records", "Process control", "Importer documentation"],
+    summary: "Japanese labeling, importer documentation, product specifications, and quality discipline.",
+    requirements: ["Product specification", "Quality records", "Japanese label review", "Importer documentation"],
     documents: ["Specification sheet", "HACCP evidence file", "Quality inspection records", "Complaint procedure"],
     timeline: "4-8 months",
     consultation: "Product specification + quality record review",
@@ -118,8 +115,8 @@ export const markets = [
   {
     slug: "asean",
     name: "ASEAN",
-    summary: "Best for regional export routes where baseline food safety and shipment documentation must be organized.",
-    requirements: ["Export documents", "Origin support", "Health certificate evidence", "Shipment file"],
+    summary: "Regional food safety preparation, HALAL readiness where needed, local standards, and shipment files.",
+    requirements: ["Export documents", "Origin support", "Local standard review", "Shipment file"],
     documents: ["Export checklist", "Certificate support file", "Health evidence", "Packing and shipment file"],
     timeline: "2-5 months",
     consultation: "Baseline export documentation check",
@@ -127,7 +124,7 @@ export const markets = [
   {
     slug: "middle-east",
     name: "Middle East",
-    summary: "Best for products where HALAL readiness, ingredient controls, and export health evidence are important.",
+    summary: "SFDA/GSO-style preparation, HALAL readiness, ingredient controls, and export health evidence.",
     requirements: ["HALAL readiness", "Ingredient controls", "HACCP records", "Export health evidence"],
     documents: ["HALAL readiness checklist", "Ingredient declarations", "Cleaning evidence", "Health evidence file"],
     timeline: "4-8 months",

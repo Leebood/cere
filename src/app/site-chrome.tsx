@@ -6,6 +6,7 @@ const navItems = [
   ["Services", "/services"],
   ["About", "/about"],
   ["Contact", "/contact"],
+  ["Login", "/workspace"],
 ];
 
 export function SiteChrome({ children }: { children: ReactNode }) {

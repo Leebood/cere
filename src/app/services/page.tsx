@@ -3,24 +3,20 @@ import { PageIntro, SiteChrome } from "../site-chrome";
 
 const serviceJourney = [
   {
-    title: "We assess your readiness",
-    text: "Review the product, market, factory status, and existing documents before recommending a route.",
+    title: "Assess",
+    text: "We evaluate your factory, products, processes, and current documents against the target market route.",
   },
   {
-    title: "We identify the gaps",
-    text: "Turn market expectations into a clear list of missing files, records, evidence, and factory actions.",
+    title: "Prepare",
+    text: "We turn the gaps into tasks, timeline, responsibilities, document packages, and implementation priorities.",
   },
   {
-    title: "We prepare the documents",
-    text: "Build practical manuals, forms, checklists, labels, registration files, and audit preparation packs.",
+    title: "Review",
+    text: "We review documents, labels, records, and evidence before they are used for audits or registration support.",
   },
   {
-    title: "We organize the evidence",
-    text: "Help the factory keep records, training files, traceability evidence, and corrective actions reviewable.",
-  },
-  {
-    title: "We support your audit",
-    text: "Prepare the business for certification audits, buyer audits, registration review, and annual maintenance.",
+    title: "Support",
+    text: "We support audit preparation, corrective actions, annual updates, and the next market expansion route.",
   },
 ];
 
@@ -28,8 +24,7 @@ export default function ServicesPage() {
   return (
     <SiteChrome>
       <PageIntro eyebrow="Services" title="How CERE helps you prepare for export.">
-        Our work starts from the export destination, then moves into readiness assessment, gap closure, documentation,
-        evidence organization, and audit support.
+        You do not need a certificate first. You need a route, a gap list, the right files, and reviewable evidence.
       </PageIntro>
 
       <section className="cere-section">

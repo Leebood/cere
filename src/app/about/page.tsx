@@ -4,33 +4,39 @@ export default function AboutPage() {
   return (
     <SiteChrome>
       <PageIntro eyebrow="About" title="CERE is built around export readiness.">
-        We help Cambodia food manufacturers understand what a target market requires, close preparation gaps, and keep
-        compliance evidence organized before certification, registration, or buyer review.
+        Our mission is simple: help companies become export-ready before they spend time and money on certification,
+        registration, or buyer review.
       </PageIntro>
 
       <section className="cere-section muted">
         <div className="about-grid">
           <article>
-            <strong>What we are</strong>
+            <strong>Why CERE</strong>
             <p>
-              A consulting and digital preparation partner for food exporters that need clearer routes into China, the
-              European Union, the United States, Japan, ASEAN, and Middle East markets.
+              Traditional consulting often starts with the certificate. CERE starts from the export goal, then builds
+              the route, documents, evidence, and responsibilities around it.
             </p>
           </article>
           <article>
-            <strong>What we do</strong>
+            <strong>Our approach</strong>
             <p>
-              We prepare readiness assessments, gap lists, document packages, training evidence, label review notes,
-              audit packs, and annual compliance support plans.
+              We start with where, not how. We sell readiness, not certificates. We reduce risk, not just complete
+              tasks. We build partnerships, not one-time projects.
             </p>
           </article>
           <article>
-            <strong>What we do not do</strong>
+            <strong>Our boundary</strong>
             <p>
               CERE is not a certification body, laboratory, government approval authority, customs broker, or guarantee
               of market access.
             </p>
           </article>
+        </div>
+        <div className="trust-tags" aria-label="CERE trust principles">
+          <span>Evidence-Based</span>
+          <span>Human-Reviewed</span>
+          <span>Transparent</span>
+          <span>Continuous</span>
         </div>
       </section>
     </SiteChrome>
