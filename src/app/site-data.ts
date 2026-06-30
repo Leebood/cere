@@ -80,6 +80,7 @@ export const deliverables = [
 
 export const markets = [
   {
+    slug: "china",
     name: "China",
     summary: "Best for factories preparing GACC registration, Chinese label review, and structured food safety evidence.",
     requirements: ["HACCP evidence", "GACC preparation", "Chinese label review", "Factory profile"],
@@ -88,6 +89,7 @@ export const markets = [
     consultation: "Route review + GACC readiness check",
   },
   {
+    slug: "eu",
     name: "European Union",
     summary: "Best for exporters facing buyer audit expectations, traceability checks, and stricter supplier controls.",
     requirements: ["Traceability", "Supplier approval", "Allergen control", "Buyer audit evidence"],
@@ -96,6 +98,7 @@ export const markets = [
     consultation: "Traceability + buyer audit gap analysis",
   },
   {
+    slug: "usa",
     name: "United States",
     summary: "Best for businesses needing stronger preventive-control thinking and importer-facing documentation.",
     requirements: ["Food safety plan", "Sanitation records", "Supplier verification", "Recall readiness"],
@@ -104,6 +107,7 @@ export const markets = [
     consultation: "Food safety plan readiness review",
   },
   {
+    slug: "japan",
     name: "Japan",
     summary: "Best for exporters that need stronger product specifications, quality discipline, and process records.",
     requirements: ["Product specification", "Quality records", "Process control", "Importer documentation"],
@@ -112,6 +116,7 @@ export const markets = [
     consultation: "Product specification + quality record review",
   },
   {
+    slug: "asean",
     name: "ASEAN",
     summary: "Best for regional export routes where baseline food safety and shipment documentation must be organized.",
     requirements: ["Export documents", "Origin support", "Health certificate evidence", "Shipment file"],
@@ -120,6 +125,7 @@ export const markets = [
     consultation: "Baseline export documentation check",
   },
   {
+    slug: "middle-east",
     name: "Middle East",
     summary: "Best for products where HALAL readiness, ingredient controls, and export health evidence are important.",
     requirements: ["HALAL readiness", "Ingredient controls", "HACCP records", "Export health evidence"],

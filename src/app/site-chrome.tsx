@@ -3,11 +3,8 @@ import Link from "next/link";
 
 const navItems = [
   ["Markets", "/markets"],
-  ["Solutions", "/solutions"],
-  ["Process", "/process"],
-  ["Deliverables", "/deliverables"],
-  ["Products", "/products"],
-  ["Platform", "/platform"],
+  ["Services", "/services"],
+  ["About", "/about"],
   ["Contact", "/contact"],
 ];
 

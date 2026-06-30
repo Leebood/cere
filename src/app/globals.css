@@ -2684,6 +2684,206 @@ button.secondary:hover {
   text-decoration: none;
 }
 
+.guide-hero {
+  grid-template-columns: minmax(0, 0.95fr) minmax(340px, 0.8fr);
+}
+
+.guide-choice-panel {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+  min-height: 560px;
+  border: 1px solid #d8d7cf;
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(16, 35, 26, 0.78), rgba(16, 35, 26, 0.94)),
+    url("https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1200&q=80");
+  background-position: center;
+  background-size: cover;
+  color: white;
+  padding: clamp(20px, 4vw, 34px);
+}
+
+.guide-choice-panel .cere-eyebrow {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.guide-choice-panel > strong {
+  max-width: 480px;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 0.98;
+}
+
+.guide-market-grid,
+.guide-route-grid,
+.market-decision-grid,
+.about-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.guide-market-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.guide-market-card {
+  display: grid;
+  gap: 5px;
+  min-height: 82px;
+  align-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.11);
+  color: white;
+  padding: 13px;
+  text-decoration: none;
+}
+
+.guide-market-card:hover {
+  border-color: rgba(255, 255, 255, 0.62);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.guide-market-card span {
+  font-size: 18px;
+  font-weight: 820;
+  line-height: 1.1;
+}
+
+.guide-market-card small {
+  color: rgba(255, 255, 255, 0.68);
+  font-weight: 720;
+}
+
+.guide-route-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.market-route-card,
+.market-decision-card,
+.about-grid article {
+  display: grid;
+  gap: 14px;
+  border: 1px solid #ddd9cf;
+  border-radius: 8px;
+  background: #fffefa;
+  padding: 18px;
+}
+
+.market-route-card p,
+.market-decision-card p,
+.about-grid p,
+.service-journey p,
+.guide-service-note p {
+  margin: 0;
+  color: #536058;
+  line-height: 1.5;
+}
+
+.market-route-card ul,
+.route-answer ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding-left: 18px;
+  color: #344039;
+  line-height: 1.35;
+}
+
+.guide-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.guide-flow article {
+  display: grid;
+  gap: 12px;
+  min-height: 150px;
+  align-content: space-between;
+  border: 1px solid #ddd9cf;
+  border-radius: 8px;
+  background: #fffefa;
+  padding: 16px;
+}
+
+.guide-flow span,
+.service-journey span {
+  color: #c47a3c;
+  font-size: 13px;
+  font-weight: 860;
+}
+
+.guide-flow strong,
+.service-journey strong,
+.about-grid strong {
+  font-size: 20px;
+  line-height: 1.12;
+}
+
+.guide-service-note {
+  display: grid;
+  gap: 10px;
+  max-width: 760px;
+  margin-top: 16px;
+  border-left: 4px solid #c47a3c;
+  padding-left: 18px;
+}
+
+.market-decision-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.market-decision-card {
+  scroll-margin-top: 104px;
+}
+
+.route-answer {
+  display: grid;
+  gap: 7px;
+  border: 1px solid #ece7dd;
+  border-radius: 8px;
+  background: #fbfaf5;
+  padding: 12px;
+}
+
+.route-answer small {
+  color: #7a5a38;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.service-journey {
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  border: 1px solid #ddd9cf;
+  border-radius: 8px;
+  background: #fffefa;
+}
+
+.service-journey article {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+  gap: 18px;
+  padding: 20px;
+}
+
+.service-journey article + article {
+  border-top: 1px solid #ece7dd;
+}
+
+.service-journey div {
+  display: grid;
+  gap: 7px;
+}
+
+.about-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .cere-tag-grid.compact span {
   padding: 8px 11px;
 }
@@ -2826,6 +3026,11 @@ button.secondary:hover {
   .cere-value-grid,
   .cere-card-grid.three,
   .cere-market-list,
+  .guide-hero,
+  .guide-route-grid,
+  .guide-flow,
+  .market-decision-grid,
+  .about-grid,
   .deliverable-grid,
   .cere-split,
   .cere-contact-box {
@@ -2864,7 +3069,9 @@ button.secondary:hover {
 
   .market-card-head,
   .market-detail-grid,
-  .cere-process dl {
+  .cere-process dl,
+  .guide-market-grid,
+  .service-journey article {
     display: grid;
     grid-template-columns: 1fr;
   }
