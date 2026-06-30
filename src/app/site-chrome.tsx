@@ -6,7 +6,6 @@ const navItems = [
   ["Services", "/services"],
   ["About", "/about"],
   ["Contact", "/contact"],
-  ["Login", "/workspace"],
 ];
 
 export function SiteChrome({ children }: { children: ReactNode }) {
@@ -30,7 +29,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           Readiness and compliance support only. Not a certification body, laboratory, government approval authority, or
           guarantee of market access.
         </p>
-        <Link href="/workspace">Internal workspace</Link>
       </footer>
     </main>
   );
