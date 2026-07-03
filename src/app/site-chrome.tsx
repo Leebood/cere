@@ -4,6 +4,7 @@ import Link from "next/link";
 const navItems = [
   ["Markets", "/markets"],
   ["Services", "/services"],
+  ["Resources", "/resources"],
   ["About", "/about"],
   ["Contact", "/contact"],
 ];

@@ -97,6 +97,46 @@ These can be stored inline in ai_generations.input_json during V1, then normaliz
 - title
 - excerpt
 
+## content_engine_seed
+
+The public content engine starts with reviewed static seed data, then can move to PostgreSQL/Supabase later. It powers `/resources`, `/markets/[slug]`, `/products/[slug]`, and `/guides/[slug]`.
+
+Current static seed file:
+
+- `src/lib/content-data.ts`
+
+Initial entities:
+
+- markets
+- products
+- guides
+
+Future database-backed entities:
+
+- markets
+- products
+- requirements
+- regulations
+- content_templates
+- guide_faq
+- source_references
+
+Content engine rules:
+
+- Homepage remains brand and market entry, not a knowledge dump.
+- All guide pages should use question titles.
+- Every guide should include a 50-80 word Quick Answer.
+- FAQ structured data should be generated from reviewed FAQ items.
+- AI can draft content, but requirements, costs, timelines, and authority references require review.
+- The content engine supports SEO/AEO and lead capture; it does not replace consultant review.
+
+Recommended table adjustments before database implementation:
+
+- Use `market_product_requirements` to connect markets, products, and requirements instead of duplicating requirements per pair.
+- Normalize source metadata with `source_url`, `source_type`, `last_verified_at`, and `review_status`.
+- Avoid risky or irrelevant requirement slugs such as `eu-ce` for food export pages unless the product actually requires them.
+- Store cost and processing-time fields as estimates with `estimate_basis` and `reviewed_at`.
+
 ## readiness_scores
 
 The score is rule-generated, not AI-generated. It is the main entry point for Free Snapshot, Paid Compliance Workspace, and Annual Export Support.

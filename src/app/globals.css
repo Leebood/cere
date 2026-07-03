@@ -3236,6 +3236,133 @@ button.secondary:hover {
   line-height: 1.45;
 }
 
+.resource-column-grid,
+.resource-detail-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.resource-column-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-detail-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-column-grid article,
+.resource-detail-grid article,
+.guide-sidebar,
+.quick-answer {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  border: 1px solid #ddd9cf;
+  border-radius: 8px;
+  background: #fffefa;
+  padding: 20px;
+}
+
+.resource-column-grid article > span,
+.resource-detail-grid article > span,
+.guide-sidebar > span,
+.quick-answer > span {
+  color: #7a5a38;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.resource-column-grid strong,
+.resource-detail-grid strong {
+  font-size: 22px;
+  line-height: 1.12;
+}
+
+.resource-detail-grid ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  color: #344039;
+  line-height: 1.4;
+}
+
+.resource-link-list {
+  display: grid;
+  gap: 8px;
+}
+
+.resource-link-list a,
+.guide-sidebar a {
+  color: #1d5b40;
+  font-weight: 780;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.resource-link-list a:hover,
+.guide-sidebar a:hover {
+  text-decoration: underline;
+}
+
+.guide-content-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+  gap: 24px;
+  align-items: start;
+}
+
+.guide-article {
+  display: grid;
+  gap: 26px;
+}
+
+.quick-answer {
+  margin: 0;
+  border-left: 4px solid #1d5b40;
+}
+
+.quick-answer p,
+.guide-article p,
+.faq-list p {
+  margin: 0;
+  color: #536058;
+  font-size: 17px;
+  line-height: 1.58;
+}
+
+.guide-article section {
+  display: grid;
+  gap: 10px;
+}
+
+.guide-article h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.2vw, 42px);
+  line-height: 1.08;
+}
+
+.faq-list {
+  display: grid;
+  gap: 10px;
+}
+
+.faq-list article {
+  display: grid;
+  gap: 8px;
+  border: 1px solid #ddd9cf;
+  border-radius: 8px;
+  background: #fffefa;
+  padding: 16px;
+}
+
+.faq-list strong {
+  font-size: 18px;
+  line-height: 1.2;
+}
+
 .cere-tag-grid.compact span {
   padding: 8px 11px;
 }
@@ -3384,6 +3511,9 @@ button.secondary:hover {
   .market-decision-grid,
   .about-grid,
   .contact-form,
+  .resource-column-grid,
+  .resource-detail-grid,
+  .guide-content-layout,
   .official-market-grid,
   .route-feature,
   .deliverable-grid,

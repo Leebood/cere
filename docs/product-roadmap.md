@@ -16,6 +16,23 @@ Long-term infrastructure narrative:
 
 > Starting with cashew certification readiness, expanding into Cambodia food export compliance infrastructure.
 
+## Public Architecture
+
+CERE is now split into three connected layers:
+
+```text
+Public Website
+Brand trust, market selection, service positioning, and consultation conversion.
+
+Knowledge & Content Engine
+Markets, products, requirements, guides, FAQ pages, quick answers, SEO, and AI-engine citation readiness.
+
+Compliance Workspace
+Client projects, readiness scoring, documents, gap analysis, HACCP/GACC packages, evidence tracking, and consultant review.
+```
+
+The homepage should remain a focused official website and export-route entry point. The knowledge engine should grow through `/resources`, `/markets/[slug]`, `/products/[slug]`, and `/guides/[slug]`, not by adding dense content to the homepage.
+
 ## Product Boundary
 
 The platform is responsible for readiness and compliance preparation.
@@ -118,6 +135,42 @@ Add a stronger free-check workflow around rules-only scoring:
 - Audit Risk
 
 The current V1 includes the first rule-based score so this phase can grow without a rewrite.
+
+## Phase 2A: Knowledge And Content Engine
+
+Add a database-driven content layer before building full automation:
+
+- Markets data
+- Products data
+- Requirements data
+- Regulations data
+- Guide templates
+- Quick Answer blocks
+- FAQ structured data
+- Internal links between markets, products, guides, and services
+
+Initial public routes:
+
+- `/resources`
+- `/markets/[slug]`
+- `/products/[slug]`
+- `/guides/[slug]`
+
+Do not generate hundreds of pages immediately. Start with a small reviewed seed set, then expand based on Google Search Console and customer questions.
+
+Content format:
+
+- Question title
+- 50-80 word Quick Answer
+- Question-based headings
+- FAQ section
+- CTA to consultation or readiness assessment
+
+Rules:
+
+- Facts, timelines, costs, and authority references must be reviewed.
+- AI can draft explanations, but cannot invent official requirements.
+- Compliance statements must preserve CERE's boundary: readiness and preparation, not approval or certification.
 
 ## Phase 3: Client Portal And CRM
 
