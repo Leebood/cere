@@ -99,23 +99,22 @@ export const contentProducts: ContentProduct[] = [
 
 export const guides: Guide[] = [
   {
-    slug: "can-cambodian-cashews-export-to-china",
-    title: "Can Cambodian Cashews Export to China?",
-    question: "Can Cambodian cashews export to China?",
+    slug: "can-cambodian-food-products-export-to-china",
+    title: "Can Cambodian Food Products Export to China?",
+    question: "Can Cambodian food products export to China?",
     marketSlug: "china",
-    productSlug: "cashew",
     quickAnswer:
-      "Yes. Cambodian cashew businesses can prepare for China export, but they need a clear China route: GACC preparation, HACCP evidence, Chinese label review, product specifications, and traceability records. CERE helps organize readiness and evidence before formal registration or buyer review.",
+      "Yes. Cambodian food manufacturers can prepare for China export, but the route depends on product category, factory status, GACC preparation, HACCP evidence, Chinese label review, product specifications, and traceability records. CERE helps organize readiness and evidence before formal registration or buyer review.",
     sections: [
       {
         heading: "What does the China route usually require?",
         body:
-          "A China route normally starts with factory profile preparation, food safety system evidence, product specification review, Chinese label readiness, and traceability records that can be reviewed by consultants, buyers, or relevant authorities.",
+          "A China route normally starts with product category review, factory profile preparation, food safety system evidence, product specification review, Chinese label readiness, and traceability records that can be reviewed by consultants, buyers, or relevant authorities.",
       },
       {
         heading: "What should a factory prepare first?",
         body:
-          "The first step is a readiness review. Before spending money on registration or printing labels, the factory should check whether HACCP evidence, monitoring records, training evidence, pest control, water testing, and traceability files are complete.",
+          "The first step is a readiness review. Before spending money on registration, packaging, or labels, the factory should check whether HACCP evidence, monitoring records, training evidence, pest control, water testing, product specifications, and traceability files are complete.",
       },
       {
         heading: "How does CERE help?",

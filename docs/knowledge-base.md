@@ -135,7 +135,7 @@ Before scaling generated content:
 
 Initial guide pages:
 
-- Can Cambodian Cashews Export to China?
+- Can Cambodian Food Products Export to China?
 - What Documents Are Needed for GACC Preparation?
 - HACCP Readiness Checklist for Food Factories
 
