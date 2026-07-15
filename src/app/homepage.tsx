@@ -1,173 +1,151 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import { markets } from "./site-data";
+import { markets, productCategories } from "./site-data";
 import { SiteChrome } from "./site-chrome";
 
-const serviceSteps = [
-  {
-    title: "Assess",
-    text: "Evaluate current readiness and identify gaps.",
-  },
-  {
-    title: "Prepare",
-    text: "Build a roadmap with tasks, timeline, and responsibilities.",
-  },
-  {
-    title: "Review",
-    text: "Check documents and evidence before external review.",
-  },
-  {
-    title: "Support",
-    text: "Guide the project until the business is export-ready.",
-  },
+const marketCodes: Record<string, string> = {
+  china: "CN",
+  eu: "EU",
+  usa: "US",
+  japan: "JP",
+  asean: "SEA",
+  "middle-east": "ME",
+};
+
+const marketFocus: Record<string, string> = {
+  china: "GACC + traceability",
+  eu: "Food safety + buyer audit",
+  usa: "FDA + preventive controls",
+  japan: "Quality + specifications",
+  asean: "Regional export files",
+  "middle-east": "HALAL + ingredient control",
+};
+
+const problemBlocks = [
+  { number: "01", title: "Market entry", tag: "Choose the right route", href: "/markets" },
+  { number: "02", title: "Certification", tag: "Find and close gaps", href: "/solutions" },
+  { number: "03", title: "Documentation", tag: "Build usable evidence", href: "/services" },
+  { number: "04", title: "Buyer & audit", tag: "Prepare before review", href: "/process" },
+];
+
+const trustSignals = [
+  { value: "06", label: "Priority markets" },
+  { value: String(productCategories.length).padStart(2, "0"), label: "Product categories" },
+  { value: "4", label: "Readiness stages" },
+  { value: "1", label: "Evidence-led route" },
 ];
 
 export function HomePage() {
   return (
     <SiteChrome>
-      <section className="brand-hero">
-        <div className="brand-hero-copy">
-          <p className="cere-eyebrow">Cambodia Export Readiness Engine</p>
-          <h1>CERE</h1>
-          <p className="brand-hero-lead">Export readiness for global food markets.</p>
-          <p className="brand-hero-sub">
-            Choose a destination. Understand the requirements. Prepare the evidence before you start.
-          </p>
-          <div className="brand-actions">
-            <a className="cere-button primary" href="#choose-market">Choose your market</a>
-            <a className="cere-button dark" href="/contact">Book consultation</a>
+      <section className="home-hero">
+        <div className="home-hero-copy">
+          <p className="home-kicker"><span /> Cambodia Export Readiness Engine</p>
+          <h1>From Cambodia to the markets that matter.</h1>
+          <p className="home-hero-line">Choose the route. See the requirements. Build the evidence.</p>
+          <div className="home-actions">
+            <a className="home-button light" href="#markets">Explore markets <span>↗</span></a>
+            <a className="home-button outline" href="/contact">Book consultation</a>
+          </div>
+          <div className="hero-mini-proof" aria-label="CERE focus areas">
+            <span>Food exporters</span>
+            <span>Factories</span>
+            <span>Cooperatives</span>
           </div>
         </div>
-        <div className="brand-map" aria-label="Choose export destination on abstract route map">
-          <div className="brand-map-caption">
-            <span>Export routes from Cambodia</span>
-            <strong>Tap a market to see what you need.</strong>
-          </div>
-          <svg className="world-route-map" viewBox="0 0 980 470" role="img" aria-label="Abstract export route map">
-            <g className="map-grid" aria-hidden="true">
-              <path d="M70 120H910" />
-              <path d="M70 205H910" />
-              <path d="M70 290H910" />
-              <path d="M70 375H910" />
-              <path d="M145 70V420" />
-              <path d="M314 70V420" />
-              <path d="M484 70V420" />
-              <path d="M617 70V420" />
-              <path d="M744 70V420" />
-              <path d="M792 70V420" />
-            </g>
-            <ellipse className="map-orbit" cx="490" cy="244" rx="405" ry="156" />
-            <ellipse className="map-orbit subtle" cx="490" cy="244" rx="285" ry="106" />
-            <path className="map-route-line" d="M617 285 C690 222, 741 188, 792 156" />
-            <path className="map-route-line" d="M617 285 C552 201, 458 153, 314 128" />
-            <path className="map-route-line" d="M617 285 C432 267, 276 225, 145 186" />
-            <path className="map-route-line" d="M617 285 C659 226, 700 191, 744 181" />
-            <path className="map-route-line" d="M617 285 C642 298, 674 314, 706 331" />
-            <path className="map-route-line" d="M617 285 C557 247, 518 212, 484 177" />
-            <circle className="map-origin-dot" cx="617" cy="285" r="8" />
-            <text className="map-origin-label" x="631" y="291">Cambodia</text>
 
-            <a className="map-market active" href="/markets#china" aria-label="China market route">
-              <circle cx="792" cy="156" r="29" />
-              <text x="792" y="162">China</text>
-            </a>
-            <a className="map-market" href="/markets#eu" aria-label="European Union market route">
-              <circle cx="484" cy="177" r="27" />
-              <text x="484" y="183">EU</text>
-            </a>
-            <a className="map-market" href="/markets#usa" aria-label="United States market route">
-              <circle cx="145" cy="186" r="30" />
-              <text x="145" y="192">USA</text>
-            </a>
-            <a className="map-market" href="/markets#japan" aria-label="Japan market route">
-              <circle cx="744" cy="181" r="25" />
-              <text x="744" y="187">Japan</text>
-            </a>
-            <a className="map-market" href="/markets#asean" aria-label="ASEAN market route">
-              <circle cx="706" cy="331" r="31" />
-              <text x="706" y="337">ASEAN</text>
-            </a>
-            <a className="map-market" href="/markets#middle-east" aria-label="Middle East market route">
-              <circle cx="314" cy="128" r="34" />
-              <text x="314" y="134">Middle East</text>
-            </a>
-          </svg>
+        <div className="hero-map-block">
+          <div className="map-block-head">
+            <span>Export routes</span>
+            <strong>Start in Cambodia</strong>
+          </div>
+          <div className="world-map-visual" role="img" aria-label="World map showing CERE export routes from Cambodia">
+            <span className="map-origin-pulse" aria-hidden="true" />
+            <span className="map-origin-name">Cambodia</span>
+            <span className="map-route route-cn" aria-hidden="true" />
+            <span className="map-route route-eu" aria-hidden="true" />
+            <span className="map-route route-us" aria-hidden="true" />
+            <span className="map-route route-jp" aria-hidden="true" />
+            <span className="map-route route-sea" aria-hidden="true" />
+            <span className="map-route route-me" aria-hidden="true" />
+            {markets.map((market) => (
+              <a
+                className={`map-node node-${market.slug}`}
+                href={`/markets#${market.slug}`}
+                key={market.slug}
+                aria-label={`${market.name} market route`}
+              >
+                <b>{marketCodes[market.slug]}</b>
+                <span>{market.name}</span>
+              </a>
+            ))}
+          </div>
+          <a className="map-block-link" href="/markets">View all market routes <span>→</span></a>
         </div>
       </section>
 
-      <section className="cere-section market-choice-section" id="choose-market">
-        <div className="cere-section-heading">
-          <p className="cere-eyebrow">Start here</p>
-          <h2>Where do you want to export?</h2>
-          <p>
-            Choose a destination first. Each route has different documents, evidence, and preparation timelines.
-          </p>
+      <section className="home-block home-markets" id="markets">
+        <div className="home-section-title">
+          <div>
+            <p>Where we work</p>
+            <h2>Choose a destination.</h2>
+          </div>
+          <a href="/markets">Market guides <span>↗</span></a>
         </div>
-        <div className="official-market-grid">
-          {markets.map((market) => (
-            <a className="official-market-card" href={`/markets#${market.slug}`} key={market.slug}>
+        <div className="market-block-grid">
+          {markets.map((market, index) => (
+            <a className={`market-block market-tone-${index + 1}`} href={`/markets#${market.slug}`} key={market.slug}>
+              <span className="market-code">{marketCodes[market.slug]}</span>
               <strong>{market.name}</strong>
-              <span>{market.summary}</span>
-              <small>{market.timeline}</small>
+              <small>{marketFocus[market.slug]}</small>
+              <span className="block-arrow">↗</span>
             </a>
           ))}
         </div>
       </section>
 
-      <section className="cere-section muted">
-        <div className="route-feature">
+      <section className="home-block home-problems">
+        <div className="home-section-title inverse">
           <div>
-            <p className="cere-eyebrow">What you will need</p>
-            <h2>Every market becomes a clear preparation route.</h2>
-            <p>
-              CERE helps you understand what must be prepared before registration, certification, buyer review, or
-              shipment support.
-            </p>
+            <p>What we solve</p>
+            <h2>One clear readiness path.</h2>
           </div>
-          <article className="route-preview-card">
-            <span>Example route</span>
-            <strong>Exporting to China</strong>
-            <ul>
-              <li>HACCP readiness</li>
-              <li>GACC preparation</li>
-              <li>Chinese label review</li>
-              <li>Traceability records</li>
-            </ul>
-            <small>Estimated preparation: 4-8 months</small>
-          </article>
+          <a href="/solutions">See solutions <span>↗</span></a>
         </div>
-      </section>
-
-      <section className="cere-section official-services">
-        <div className="cere-section-heading">
-          <p className="cere-eyebrow">Services</p>
-          <h2>From export goal to audit-ready evidence.</h2>
-        </div>
-        <div className="guide-flow">
-          {serviceSteps.map((step, index) => (
-            <article key={step.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{step.title}</strong>
-              <p>{step.text}</p>
-            </article>
+        <div className="problem-flow">
+          {problemBlocks.map((problem, index) => (
+            <a href={problem.href} className="problem-node" key={problem.title}>
+              <span className="problem-number">{problem.number}</span>
+              <div className="problem-symbol" aria-hidden="true">
+                <i /><i /><i />
+              </div>
+              <strong>{problem.title}</strong>
+              <small>{problem.tag}</small>
+              {index < problemBlocks.length - 1 && <span className="flow-arrow" aria-hidden="true">→</span>}
+            </a>
           ))}
         </div>
-        <div className="guide-service-note">
-          <strong>Every recommendation is evidence-based and reviewed before delivery.</strong>
-          <p>
-            CERE prepares documents, workflows, records, and audit evidence. We are not a certification body,
-            laboratory, government approval authority, or guarantee of market access.
-          </p>
-          <a className="market-consult-link" href="/services">See services</a>
-        </div>
       </section>
 
-      <section className="cere-section contact">
-        <div className="cere-contact-box">
-          <div>
-            <strong>Ready to plan your export route?</strong>
-            <p>Tell us the product, destination market, factory status, and current certification position.</p>
-          </div>
-          <a className="cere-button primary" href="/contact">Book Consultation</a>
+      <section className="home-block home-trust">
+        <div className="trust-statement">
+          <p>Why CERE</p>
+          <h2>Evidence before claims.</h2>
+          <span>Practical preparation for market, buyer and audit review.</span>
+        </div>
+        <div className="trust-signal-grid">
+          {trustSignals.map((signal) => (
+            <div className="trust-signal" key={signal.label}>
+              <strong>{signal.value}</strong>
+              <span>{signal.label}</span>
+            </div>
+          ))}
+        </div>
+        <div className="trust-standard-row" aria-label="Standards and frameworks supported">
+          <span>HACCP</span><span>GACC</span><span>FSMA</span><span>HALAL</span><span>TRACEABILITY</span>
+        </div>
+        <div className="trust-action">
+          <span>CERE provides readiness and compliance support — not certification or market-access guarantees.</span>
+          <a href="/contact">Plan your route <b>→</b></a>
         </div>
       </section>
     </SiteChrome>
