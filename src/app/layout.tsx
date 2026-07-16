@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "CERE | Cambodia Export Readiness Engine",
-  description: "Practical market-entry, certification readiness, compliance documentation, and audit preparation for Cambodia food exporters.",
+  description: "Export readiness, certification consulting, and compliance workflow infrastructure for Cambodia food exporters.",
 };
 
 export default function RootLayout({
