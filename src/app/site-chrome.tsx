@@ -3,10 +3,10 @@ import Link from "next/link";
 
 const navItems = [
   ["Markets", "/markets"],
-  ["Solutions", "/solutions"],
-  ["Products", "/products"],
+  ["Services", "/services"],
   ["Resources", "/resources"],
   ["About", "/about"],
+  ["Contact", "/contact"],
 ];
 
 export function SiteChrome({ children }: { children: ReactNode }) {
@@ -21,7 +21,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           {navItems.map(([label, href]) => (
             <Link href={href} key={href}>{label}</Link>
           ))}
-          <Link className="nav-consult" href="/contact">Book consultation</Link>
         </nav>
       </header>
       {children}
